@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop | TIMELESS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="products.css"/>
+</head>
+<body>
+<div id="loader" class="loader">
+  <div class="spinner"></div>
+  <p>Loading...</p>
+</div>
+<header>
+  <div class="logo"><a href="index.html">TIMELESS</a></div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html" class="active">Shop</a></li>
+      <li><a href="loginpage.html" id="account-link">Login</a></li>
+    </ul>
+  </nav>
+  <div class="utilities">
+    <a href="cart.html"><button class="btn primary"> 🛒</button></a>
+  </div>
+</header>
+<main>
+  <h1>The TIMELESS Collections</h1>
+  <div class="products" id="product-list"></div>
+</main>
+<div id="cart-popup" class="cart-popup">
+  <div class="cart-popup-content">
+    <span class="cart-popup-close" onclick="closeCartPopup()">&times;</span>
+    <div class="cart-popup-actions">
+      <a href="cart.html"><button class="btn primary">View Bag</button></a>
+      <button class="btn secondary" onclick="closeCartPopup()">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>© 2025 TIMELESS CLOTHING. All rights reserved.</p>
+</footer>
+<script src="data.js"></script>
+<script src="auth.js"></script>
+<script src="cart.js"></script>
+<script src="main.js"></script>
+<script src="loader.js"></script>
+<script src="cart-displays.js"></script>
+</body>
+</html>
