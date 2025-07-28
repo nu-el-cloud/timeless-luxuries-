@@ -81,7 +81,7 @@ header .utilities {
 }
 
 .hero-content {
-    color: black ;
+    color: bisque;
     max-width: 800px;
 }
 
@@ -146,7 +146,7 @@ header .utilities {
     left: 2rem;
     font-family: var(--font-serif);
     font-size: 2rem;
-    color: black ;
+    color: palegoldenrod ;
     z-index: 1;
 }
 
