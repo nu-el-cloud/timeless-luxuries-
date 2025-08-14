@@ -11,7 +11,7 @@ h1 {
     background-blend-mode: color;
 }
 header{
-    background-color:ghostwhite;
+    background-color:rgba(121, 117, 96, 0.4);
 }
 
 .products {
@@ -22,6 +22,13 @@ header{
 .li{
     color: white;
 }
+header .logo {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color:rgb(153, 124, 86);
+}   
 
 
 .product-card h3:first-of-type {

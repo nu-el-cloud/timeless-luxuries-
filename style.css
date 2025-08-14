@@ -1,7 +1,7 @@
 :root {
     --primary: #000;
     --text: black ;
-    --gold: #d4af37;
+    --gold: #877026;
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Open Sans', sans-serif;
 }
@@ -9,7 +9,7 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    padding: 0;
+    padding: 0;S
 }
 
 body {
@@ -41,7 +41,7 @@ header .logo {
     font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: -1px;
-    color:burlywood;
+    color:rgb(153, 124, 86);
 }
 
 header nav ul {
