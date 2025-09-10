@@ -5,24 +5,25 @@ export default function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // CORS Headers (important for browser)
+  // CORS for browser compatibility
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+  if (method === 'OPTIONS') return res.status(200).end();
 
   const query = req.query.q || req.body?.q || '';
-
+  
   if (typeof query !== 'string') {
     return res.status(400).json({ error: 'Search query must be a string' });
   }
 
   const q = query.trim().toLowerCase();
+  if (!q) {
+    return res.status(200).json({ results: [], suggestions: [], total: 0 });
+  }
 
-  // 🔥 FULL PRODUCT DATA — include price, image, currency
+  // 🔥 FULL PRODUCT CATALOG — visible to ALL PAGES
   const products = [
     { id: "pulse-black", name: "Pulse of Sound - Black", price: 23, image: "/TIMELESS/PULSEOFSOUNDBLACK.jpg", currency: "$" },
     { id: "pulse-white", name: "Pulse of Sound - White", price: 23, image: "/TIMELESS/PULSEOFSOUNDWHITE.jpg", currency: "$" },
@@ -37,18 +38,19 @@ export default function handler(req, res) {
     { id: "puffer-shorts-black", name: "Black Camo Puffer Shorts", price: 320000, image: "https://www.zttw.store/cdn/shop/files/zttw_13_267df2cb-be95-4bee-b400-2a0bb9037e51.jpg?v=1741957991&width=3000", currency: "₦" },
     { id: "puffer-top-black", name: "Black Camo Puffer Top", price: 320000, image: "https://www.zttw.store/cdn/shop/files/zttw_11_ca2fe38e-dfca-4b4a-ac93-7bd0012a0e14.jpg?v=1741958027&width=3000", currency: "₦" },
     { id: "vest-leather-black", name: "Black Leather Vest", price: 400000, image: "https://www.zttw.store/cdn/shop/files/zttw_17_461f8102-3c5a-4067-83cd-275b35dba60b.jpg?v=1741958033&width=3000", currency: "₦" },
-    { id: "thunderbolt-set-black", name: "Black Thunderbolt Set", price: 1600000, image: "https://www.zttw.store/cdn/shop/files/zttw_37_75920b4d-fec0-46a9-b818-c91e3c4dc6b0.jpg?v=1741958011&width=3000", currency: "₦" },
-    { id: "hat-camo-brown", name: "Brown Camo Hat", price: 160000, image: "https://www.zttw.store/cdn/shop/files/zttw_43_275b8d09-a62a-4b88-9d4c-7ed751582ec2.jpg?v=1741958006&width=3000", currency: "₦" },
-    { id: "pattern-shorts-brown", name: "Brown Pattern-Cut Shorts", price: 240000, image: "https://www.zttw.store/cdn/shop/files/zttw_49_fd0c8527-624e-40b1-a5d5-429a6f667a58.jpg?v=1741958007&width=3000", currency: "₦" }
+    { id: "thunderbolt-set-black", name: "Black Thunderbolt Set", price: 1600000, image: "https://www.zttw.store/cdn/shop/files/zttw_37_75920b4d-fec0-46a9-b818-c91e3c4dc6b0.jpg?v=1741958011&width=3000", currency: "₦" }
   ];
 
   const filtered = products.filter(p => 
     p.name.toLowerCase().includes(q)
   );
 
+  const suggestions = [...new Set(filtered.map(p => p.name.split(" ")[0]))];
+
   res.status(200).json({
     query: q,
     results: filtered,
+    suggestions,
     total: filtered.length
   });
 }
