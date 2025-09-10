@@ -1,59 +1,653 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>TIMELESS | Luxury Essentials</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TIMELESS | Luxury Essentials</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {`
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0; 
+      background: white;
+      z-index: 100;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo img {
+      height: 120px;
+      width: auto;
+      display: block;
+    }
+    .nav {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .nav a:hover {
+      opacity: 0.8;
+    }
+
+    .icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icons a {
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    /* Mobile Menu Button */
+    .menu-toggle {
+      display: none;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Sub-nav (Categories Dropdown) */
+    .sub-nav {
+      display: none; /* Hidden by default */
+      flex-direction: horizontal;
+      gap: 15px;
+      margin: 10px 0;
+      font-size: 14px;
+      text-transform: uppercase;
+      font-weight: 500;
+      max-width: 1400px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 20px;
+      background: #f9f9f9;
+      padding: 15px 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .sub-nav.active {
+      display: flex; /* Show when active */
+    }
+
+    .sub-nav a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    /* Products Grid */
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.product {
+  border: 1px solid #eee;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.product-name {
+  font-size: 14px;
+  margin: 10px 0 5px 0;
+  font-weight: 500;
+  color: #000;
+}
+
+.price {
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+}
+
+.sold-out {
+  color: #888;
+  font-style: italic;
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Add to Cart Button */
+.add-to-cart {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #000;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, background 0.3s ease;
+  border-radius: 4px;
+  width: 80%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.product:hover .add-to-cart {
+  opacity: 1;
+}
+
+.add-to-cart:hover {
+  background: #333;
+}
+
+/* Hide button on sold-out items */
+.product .sold-out + .add-to-cart {
+  display: none;
+}
+
+/* Optional: Fade out sold-out item slightly */
+.product .sold-out {
+  opacity: 0.8;
+}
+    /* Hero Section */
+    .hero {
+      width: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 10px;
+      padding: 20px 0;
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border: none;
+      scroll-snap-align: start;
+    }
+
+    /* CTA Section */
+    .cta {
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .cta h2 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .cta p {
+      font-size: 14px;
+      color: #333;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .subscribe-form input {
+      padding: 10px;
+      border: 1px solid #000;
+      border-radius: 0;
+      font-size: 14px;
+      width: 200px;
+    }
+
+    .subscribe-form button {
+      background: black;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      text-align: left;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    footer h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .nav {
+        display: none;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .icons {
+        display: none;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .hero img {
+        width: 100%;
+      }
+
+      .subscribe-form input {
+        width: 150px;
+      }
+    }
+    /* Tablet Styles */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 15px;
+      }
+    }
+    /* Mobile Menu Overlay */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: white;
+      z-index: 999;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    .mobile-menu ul {
+      list-style: none;
+      padding: 60px 20px 20px;
+      margin: 0;
+    }
+    .mobile-menu li {
+      margin: 15px 0;
+    }
+    .mobile-menu a {
+      text-decoration: none;
+      color: #000;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
-<header class="transparent">
-    <div class="logo"><a href="index.html">TIMELESS</a></div>
-    <nav>
-        <ul>
-            <li><a href="products.html">Shop</a></li>
-            <li><a href="loginpage.html" id = "account-link">Login</a></li>
-        </ul>
+
+  <!-- Header -->
+  <header>
+<div class="logo">
+  <a href="index.html">
+    <img src="TIMELESS/timelesslogo.png" alt="TIMELESS">
+  </a>
+</div>
+
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <nav class="nav">
+      <a href="#" onclick="toggleSubNav(event)">Shop</a>
+      <a href="all-products.html">All Products</a>
+      <a href="#">Collections</a>
+      <a href="#">Lookbook</a>
+      <a href="about.html">About</a>
     </nav>
-    <div class="utilities">
-        <ul>
-            <li><a href="cart.html">🛒</a></li>
-        </ul>
+    <div class="icons">
+      <a href="#" title="Search" onclick="toggleSearch()">🔍</a>
+      <a href="cart.html" title="Cart">🛍️ </a>
+    </div>
+  </header>
+
+  <!-- Search Input (Hidden by default) -->
+  <div style="max-width: 1400px; margin: 15px auto; padding: 0 20px; display: none;" id="searchContainer">
+    <input 
+      type="text" 
+      id="searchInput" 
+      placeholder="Search products..." 
+      style="width: 100%; max-width: 500px; padding: 10px; border: 1px solid #000; font-family: 'Inter', sans-serif; font-size: 14px;" 
+      oninput="searchProducts()" />
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="#" onclick="toggleSubNavMobile()">Shop</a></li>
+      <li><a href="all-products.html">All Products</a></li>
+      <li><a href="#">Collections</a></li>
+      <li><a href="#">Lookbook</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul> 
+  </div>
+
+  <!-- Sub-nav (Categories) - Hidden by default, shown when "Shop" is clicked -->
+  <div class="sub-nav" id="subNav">
+    <a href="#">Hoodies</a>
+    <a href="#">Hats</a>
+    <a href="#">T-Shirts</a>
+    <a href="#">Sweatshirts</a>
+    <a href="#">Shirts</a>
+  </div>
+  <div class="hero">
+    <img src="TIMELESS/background.jpg" alt="Model in TIMELESS wear" />
+    <img src="TIMELESS/background.jpg" alt="TIMELESS tracksuit detail" />
+  </div>
+
+  <!-- Products Grid -->
+<div class="products" id="productsGrid">
+
+  <!-- Product: Pulse of Sound - Black -->
+  <div class="product" data-name="Pulse of Sound - Black" data-price="23" data-id="pulse-black">
+    <img src="TIMELESS/PULSEOFSOUNDBLACK.jpg" alt="Pulse of Sound T-Shirt - Black" />
+    <div class="product-name">Pulse of Sound - Black</div>
+    <div class="price">$23.00</div>
+    <button class="add-to-cart" 
+            onclick="addToCart('pulse-black', 'Pulse of Sound - Black', 23, 'TIMELESS/PULSEOFSOUNDBLACK.jpg')">
+      Add to Cart
+    </button>
+  </div>
+
+  <!-- Product: Pulse of Sound - White -->
+  <div class="product" data-name="Pulse of Sound - White" data-price="23" data-id="pulse-white">
+    <img src="TIMELESS/PULSEOFSOUNDWHITE.jpg" alt="Pulse of Sound T-Shirt - White" />
+    <div class="product-name">Pulse of Sound - White</div>
+    <div class="price">$23.00</div>
+    <button class="add-to-cart" 
+            onclick="addToCart('pulse-white', 'Pulse of Sound - White', 23, 'TIMELESS/PULSEOFSOUNDWHITE.jpg')">
+      Add to Cart
+    </button>
+  </div>
+
+  <!-- Product: Brown Camo Jorts -->
+  <div class="product" data-name="Brown Camo Jorts" data-price="320000" data-id="jorts-brown">
+    <img src="https://www.zttw.store/cdn/shop/files/z43.png?v=1754337498&width=3000" alt="Brown Camo Jorts" />
+    <div class="product-name">Brown Camo Jorts</div>
+    <div class="price">₦320,000.00</div>
+    <button class="add-to-cart" 
+            onclick="addToCart('jorts-brown', 'Brown Camo Jorts', 320000, 'https://www.zttw.store/cdn/shop/files/z43.png?v=1754337498&width=3000')">
+      Add to Cart
+    </button>
+  </div>
+
+  <!-- Product: Armless Tee - Black (Sold Out) -->
+  <div class="product" data-name="Armless Tee - Black" data-id="armless-black">
+    <img src="https://www.zttw.store/cdn/shop/files/zttw_26_4f980e9c-ea1f-47a6-8a2f-e086f091b1e3.jpg?v=1741958004&width=3000" alt="Armless Tee - Black" />
+    <div class="product-name">Armless Tee - Black</div>
+    <div class="sold-out">Sold out</div>
+  </div>
+
+  <!-- Product: Armless Tee - White (Sold Out) -->
+  <div class="product" data-name="Armless Tee - White" data-id="armless-white">
+    <img src="https://www.zttw.store/cdn/shop/files/zttw_25_e8dda1fe-2172-4fa1-bb4f-f8f65465a062.jpg?v=1741957997&width=3000" alt="Armless Tee - White" />
+    <div class="product-name">Armless Tee - White</div>
+    <div class="sold-out">Sold out</div>
+  </div>
+
+  <!-- Product: Black Pattern-Cut Top -->
+  <div class="product" data-name="Black Pattern-Cut Top" data-price="320000" data-id="pattern-top-black">
+    <img src="https://www.zttw.store/cdn/shop/files/zttw_51_10e04cd8-4da8-459c-a614-58272cddb652.jpg?v=1741958010&width=3000" alt="Black Pattern-Cut Top" />
+    <div class="product-name">Black Pattern-Cut Top</div>
+    <div class="price">₦320,000.00</div>
+    <button class="add-to-cart" 
+            onclick="addToCart('pattern-top-black', 'Black Pattern-Cut Top', 320000, 'https://www.zttw.store/cdn/shop/files/zttw_51_10e04cd8-4da8-459c-a614-58272cddb652.jpg?v=1741958010&width=3000')">
+      Add to Cart
+    </button>
+  </div>
+
+  <!-- Product: Black Pattern-Cut Shorts -->
+  <div class="product" data-name="Black Pattern-Cut Shorts" data-price="240000" data-id="pattern-shorts-black">
+    <img src="https://www.zttw.store/cdn/shop/files/zttw_53_8e95ed70-7bd8-46eb-b431-47c1067f51a3.jpg?v=1741957993&width=3000" alt="Black Pattern-Cut Shorts" />
+    <div class="product-name">Black Pattern-Cut Shorts</div>
+    <div class="price">₦240,000.00</div>
+    <button class="add-to-cart" 
+            onclick="addToCart('pattern-shorts-black', 'Black Pattern-Cut Shorts', 240000, 'https://www.zttw.store/cdn/shop/files/zttw_53_8e95ed70-7bd8-46eb-b431-47c1067f51a3.jpg?v=1741957993&width=3000')">
+      Add to Cart
+    </button>
+  </div>
+
+</div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <img src="TIMELESS/Mamba.jpg" alt="Model in TIMELESS wear" />
+    <img src="TIMELESS/bckgrnd.jpg" alt="TIMELESS   detail" />
+  </div>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div>
+      <h2>JOIN THE COMMUNITY.</h2>
+      <p>You Will Receive All The Information Regarding The Next Drops.</p>
+    </div>
+    <form class="subscribe-form" action="/api/subscribe" method="POST">
+  <input type="email" name="email" placeholder="Email Address" required />
+  <button type="submit">SUBSCRIBE →</button>
+</form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <h3>FOLLOW US</h3>
+    <div class="social-icons">
+     <a href="https://www.instagram.com/timeless_since_1982?igsh=Y2VxdGN0OWJ5bmlh&utm_source=qr" 
+       target="_blank" 
+       title="Follow on Instagram">
+      <img src="TIMELESS/instagramlogo.webp" 
+           alt="Instagram" 
+           style="width: 24px; height: 24px; vertical-align: middle;">
+    </a>
+      <a href="https://wa.me/2348166514620" target="_blank" title="Chat on WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 24px; height: 24px; vertical-align: middle;">
+      </a>
+      <a href="https://www.tiktok.com/@t_m_l11?_t=ZS-8zCbWUrObPY&_r=1" 
+       target="_blank" 
+       title="Follow on TikTok">
+      <img src="TIMELESS/tiktoklogo.webp" 
+           alt="TikTok" 
+           style="width: 24px; height: 24px; vertical-align: middle;">
+    </a>
+    </div>
+  </footer>
+
+  <script>
+  // =============== CART FUNCTIONS ===============
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  function addToCart(id, name, price, image) {
+    const existing = cart.find(item => item.id === id);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ id, name, price, image, quantity: 1 });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+    alert(`${name} added to cart!`);
+  }
+
+  function updateCartCount() {
+    const el = document.getElementById('cart-count');
+    if (el) {
+      el.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', updateCartCount);
+
+  // =============== SEARCH FUNCTIONALITY ===============
+  function toggleSearch() {
+    const container = document.getElementById('searchContainer');
+    const input = document.getElementById('searchInput');
+    
+    if (!container.style.display || container.style.display === 'none') {
+      container.style.display = 'block';
+      input.focus();
+    } else {
+      container.style.display = 'none';
+      input.value = '';
+      resetAllProducts();
+    }
+  }
+
+  async function searchProducts() {
+    const query = document.getElementById('searchInput').value.trim();
+    const container = document.querySelector('.products');
+    const currentProducts = document.querySelectorAll('.product');
+
+    if (!query) {
+      resetAllProducts();
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+      if (!response.ok) throw new Error('Search failed');
+      
+      const data = await response.json();
+
+      // Hide all current products
+      currentProducts.forEach(p => p.style.display = 'none');
+      
+      // Remove any dynamically added items (from previous search)
+      document.querySelectorAll('.product-temp').forEach(el => el.remove());
+
+      // Show matching products
+      data.results.forEach(product => {
+        if (!product.price || !product.image) return; // Skip sold-out or invalid
+
+        const existing = document.querySelector(`.product[data-id="${product.id}"]`);
         
-    </div>
-</header>
-<section class="hero"
-         style="background-image: url(TIMELESS/bckgrnd.jpg);">
-    <div class="hero-content center">
-        <h1>Winter 2025</h1>
-        <p>The Pulse of Sound Collection is here.</p>
-        <a href="products.html" class="btn primary">Explore Now</a>
-    </div>
-</section>
-</div>
-<section class="features-grid">
-    <div class="feature-card"
-         style="background-image: url(TIMELESS/background.jpg);">
-        <h2>Pulse of Sound</h2>
-        <a href="products.html" class="overlay-link"></a>
-    </div>
-    <div class="feature-card"
-         style="background-image: url(TIMELESS/Mamba.jpg);">
-        <h2>Gold Standard</h2>
-        <a href="products.html" class="overlay-link"></a>
-    </div>
-</section>
-<footer>
-    <p>© 2025 TIMELESS CLOTHING. Crafted with elegance.</p>
-    <div class="footer-links">
-        <a href="contact.html">Contact</a>|
-        <a href = "about.html"> About</a>
-    </div>
-</footer>
-<script src="auth.js"></script>
-<script src="data.js"></script>
-<script src="main.js"></script>
-</div>
+        if (existing) {
+          existing.style.display = 'block';
+        } else {
+          // Create new product card
+          const priceFormatted = `${product.currency}${Number(product.price).toLocaleString()}`;
+          
+          const div = document.createElement('div');
+          div.className = 'product product-temp'; // Mark as temporary
+          div.setAttribute('data-id', product.id);
+          div.setAttribute('data-name', product.name);
+
+          div.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" />
+            <div class="product-name">${product.name}</div>
+            <div class="price">${priceFormatted}</div>
+            <button class="add-to-cart"
+                    onclick="addToCart('${product.id}', '${product.name}', ${product.price}, '${product.image}')">
+              Add to Cart
+            </button>
+          `;
+          container.appendChild(div);
+        }
+      });
+
+    } catch (err) {
+      console.warn("API search failed, falling back:", err);
+      fallbackSearch(query);
+    }
+  }
+
+  function fallbackSearch(query) {
+    const q = query.toLowerCase();
+    document.querySelectorAll('.product').forEach(p => {
+      const name = p.getAttribute('data-name').toLowerCase();
+      p.style.display = name.includes(q) ? 'block' : 'none';
+    });
+  }
+
+  function resetAllProducts() {
+    document.querySelectorAll('.product').forEach(p => {
+      p.style.display = 'block';
+    });
+    document.querySelectorAll('.product-temp').forEach(el => el.remove());
+  }
+
+  // =============== NAVIGATION ===============
+  function toggleSubNav(e) { 
+    e.preventDefault(); 
+    document.getElementById('subNav').classList.toggle('active'); 
+  }
+
+  document.addEventListener('click', function(e) {
+    const subNav = document.getElementById('subNav');
+    const shopLink = document.querySelector('.nav a[onclick]');
+    if (!subNav.contains(e.target) && e.target !== shopLink && !shopLink?.contains(e.target)) {
+      subNav.classList.remove('active');
+    }
+  });
+
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+  }
+</script>
 </body>
 </html>
