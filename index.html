@@ -6,7 +6,7 @@
   <title>TIMELESS | Luxury Essentials</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
-    * {`
+    * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
@@ -26,48 +26,11 @@
       align-items: center;
       padding: 15px 20px;
       position: sticky;
-      top: 0; 
+      top: 0;
       background: white;
       z-index: 100;
       border-bottom: 1px solid #eee;
     }
-  
-  .search-bar input:focus {
-    outline: none;
-  }
-  #searchDropdown {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 1000;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 15px 20px;
-    display: none;
-  }
-  .product-preview {
-    flex: 1;
-    min-width: 150px;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  .product-preview img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border: 1px solid #eee;
-  }
-  .suggestion-item {
-    padding: 8px 0;
-    cursor: pointer;
-  }
-  .suggestion-item:hover {
-    color: #000;
-  }
-
 
     .logo img {
       height: 120px;
@@ -111,8 +74,8 @@
 
     /* Sub-nav (Categories Dropdown) */
     .sub-nav {
-      display: none; /* Hidden by default */
-      flex-direction: horizontal;
+      display: none;
+      flex-direction: row;
       gap: 15px;
       margin: 10px 0;
       font-size: 14px;
@@ -128,7 +91,7 @@
     }
 
     .sub-nav.active {
-      display: flex; /* Show when active */
+      display: flex;
     }
 
     .sub-nav a {
@@ -137,93 +100,80 @@
     }
 
     /* Products Grid */
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
-  max-width: 1400px;
-  margin: 40px auto;
-  padding: 0 20px;
-}
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
 
-.product {
-  border: 1px solid #eee;
-  overflow: hidden;
-  text-align: center;
-  position: relative;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  border-radius: 8px;
-}
+    .product {
+      border: 1px solid #eee;
+      overflow: hidden;
+      text-align: center;
+      position: relative;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-radius: 8px;
+    }
 
-.product:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
+    .product:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
 
-.product img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
-}
+    .product img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      display: block;
+    }
 
-.product-name {
-  font-size: 14px;
-  margin: 10px 0 5px 0;
-  font-weight: 500;
-  color: #000;
-}
+    .product-name {
+      font-size: 14px;
+      margin: 10px 0 5px 0;
+      font-weight: 500;
+      color: #000;
+    }
 
-.price {
-  font-size: 16px;
-  color: #000;
-  font-weight: 500;
-}
+    .price {
+      font-size: 16px;
+      color: #000;
+      font-weight: 500;
+    }
 
-.sold-out {
-  color: #888;
-  font-style: italic;
-  margin: 5px 0;
-  font-size: 14px;
-}
+    .sold-out {
+      color: #888;
+      font-style: italic;
+      margin: 5px 0;
+      font-size: 14px;
+    }
 
-/* Add to Cart Button */
-.add-to-cart {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #000;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  opacity: 0;
-  transition: opacity 0.3s ease, background 0.3s ease;
-  border-radius: 4px;
-  width: 80%;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-}
+    /* Add to Cart Button */
+    .add-to-cart {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #000;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.3s ease, background 0.3s ease;
+      border-radius: 4px;
+      width: 80%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
 
-.product:hover .add-to-cart {
-  opacity: 1;
-}
+    .product .sold-out  {
+      display: none;
+    }
 
-.add-to-cart:hover {
-  background: #333;
-}
-
-/* Hide button on sold-out items */
-.product .sold-out + .add-to-cart {
-  display: none;
-}
-
-/* Optional: Fade out sold-out item slightly */
-.product .sold-out {
-  opacity: 0.8;
-}
     /* Hero Section */
     .hero {
       width: 100%;
@@ -344,6 +294,7 @@
         width: 150px;
       }
     }
+
     /* Tablet Styles */
     @media (min-width: 769px) and (max-width: 1024px) {
       .products {
@@ -351,6 +302,7 @@
         padding: 0 15px;
       }
     }
+
     /* Mobile Menu Overlay */
     .mobile-menu {
       position: fixed;
@@ -363,21 +315,120 @@
       transform: translateX(-100%);
       transition: transform 0.3s ease;
     }
+
     .mobile-menu.active {
       transform: translateX(0);
     }
+
     .mobile-menu ul {
       list-style: none;
       padding: 60px 20px 20px;
       margin: 0;
     }
+
     .mobile-menu li {
       margin: 15px 0;
     }
+
     .mobile-menu a {
       text-decoration: none;
       color: #000;
       font-size: 18px;
+    }
+
+    /* === MODAL STYLES === */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 8px;
+      max-width: 800px;
+      width: 90%;
+      max-height: 90vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #000;
+      font-weight: bold;
+    }
+
+    .size-btn {
+      padding: 8px 12px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor: pointer;
+      border-radius: 4px;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
+
+    .size-btn.selected {
+      background: #000;
+      color: white;
+      border-color: #000;
+    }
+
+    .size-btn:hover:not(.selected) {
+      background: #f0f0f0;
+    }
+
+    .quantity-btn {
+      width: 30px;
+      height: 30px;
+      background: #eee;
+      border: 1px solid #ddd;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .quantity-input {
+      width: 50px;
+      text-align: center;
+      border: 1px solid #ddd;
+      padding: 5px;
+      font-size: 14px;
+    }
+
+    .btn-add-to-cart {
+      padding: 10px 20px;
+      background: #000;
+      color: white;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      flex: 1;
+    }
+
+    .btn-buy-now {
+      padding: 10px 20px;
+      background: white;
+      color: #000;
+      border: 1px solid #000;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      flex: 1;
     }
   </style>
 </head>
@@ -385,11 +436,11 @@
 
   <!-- Header -->
   <header>
-<div class="logo">
-  <a href="index.html">
-    <img src="TIMELESS/timelesslogo.png" alt="TIMELESS">
-  </a>
-</div>
+    <div class="logo">
+      <a href="index.html">
+        <img src="TIMELESS/timelesslogo.png" alt="TIMELESS">
+      </a>
+    </div>
 
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav class="nav">
@@ -405,14 +456,15 @@
     </div>
   </header>
 
-  <!-- Search Input (Hidden by default) -->
-  <div style="max-width: 1400px; margin: 15px auto; padding: 0 20px; display: none;" id="searchContainer">
+  <!-- Search Input -->
+  <div id="searchContainer" style="max-width: 1400px; margin: 15px auto; padding: 0 20px; display: none;">
     <input 
       type="text" 
       id="searchInput" 
       placeholder="Search products..." 
+      onkeydown="handleSearchEnter(event)"
       style="width: 100%; max-width: 500px; padding: 10px; border: 1px solid #000; font-family: 'Inter', sans-serif; font-size: 14px;" 
-      oninput="searchProducts()" />
+    />
   </div>
 
   <!-- Mobile Menu -->
@@ -423,10 +475,10 @@
       <li><a href="#">Collections</a></li>
       <li><a href="#">Lookbook</a></li>
       <li><a href="about.html">About</a></li>
-    </ul> 
+    </ul>
   </div>
 
-  <!-- Sub-nav (Categories) - Hidden by default, shown when "Shop" is clicked -->
+  <!-- Sub-nav -->
   <div class="sub-nav" id="subNav">
     <a href="#">Hoodies</a>
     <a href="#">Hats</a>
@@ -434,89 +486,90 @@
     <a href="#">Sweatshirts</a>
     <a href="#">Shirts</a>
   </div>
+
+  <!-- Hero Section -->
   <div class="hero">
     <img src="TIMELESS/background.jpg" alt="Model in TIMELESS wear" />
     <img src="TIMELESS/background.jpg" alt="TIMELESS tracksuit detail" />
   </div>
 
   <!-- Products Grid -->
-<div class="products" id="productsGrid">
+  <div class="products" id="productsGrid">
 
-  <!-- Product: Pulse of Sound - Black -->
-  <div class="product" data-name="Pulse of Sound - Black" data-price="23" data-id="pulse-black">
-    <img src="TIMELESS/PULSEOFSOUNDBLACK.jpg" alt="Pulse of Sound T-Shirt - Black" />
-    <div class="product-name">Pulse of Sound - Black</div>
-    <div class="price">$23.00</div>
-    <button class="add-to-cart" 
-            onclick="addToCart('pulse-black', 'Pulse of Sound - Black', 23, 'TIMELESS/PULSEOFSOUNDBLACK.jpg')">
-      Add to Cart
-    </button>
+    <!-- Product: Pulse of Sound - Black -->
+    <div class="product" data-name="Pulse of Sound - Black" data-price="23" data-id="pulse-black">
+      <img src="TIMELESS/PULSEOFSOUNDBLACK.jpg" alt="Pulse of Sound T-Shirt - Black" />
+      <div class="product-name">Pulse of Sound - Black</div>
+      <div class="price">$23.00</div>
+      <button class="add-to-cart" 
+              onclick="addToCart('pulse-black', 'Pulse of Sound - Black', 23, 'TIMELESS/PULSEOFSOUNDBLACK.jpg')">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- Product: Pulse of Sound - White -->
+    <div class="product" data-name="Pulse of Sound - White" data-price="23" data-id="pulse-white">
+      <img src="TIMELESS/PULSEOFSOUNDWHITE.jpg" alt="Pulse of Sound T-Shirt - White" />
+      <div class="product-name">Pulse of Sound - White</div>
+      <div class="price">$23.00</div>
+      <button class="add-to-cart" 
+              onclick="addToCart('pulse-white', 'Pulse of Sound - White', 23, 'TIMELESS/PULSEOFSOUNDWHITE.jpg')">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- Product: Brown Camo Jorts -->
+    <div class="product" data-name="Brown Camo Jorts" data-price="320000" data-id="jorts-brown">
+      <img src="https://www.zttw.store/cdn/shop/files/z43.png?v=1754337498&width=3000" alt="Brown Camo Jorts" />
+      <div class="product-name">Brown Camo Jorts</div>
+      <div class="price">₦320,000.00</div>
+      <button class="add-to-cart" 
+              onclick="addToCart('jorts-brown', 'Brown Camo Jorts', 320000, 'https://www.zttw.store/cdn/shop/files/z43.png?v=1754337498&width=3000')">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- Product: Armless Tee - Black (Sold Out) -->
+    <div class="product" data-name="Armless Tee - Black" data-id="armless-black">
+      <img src="https://www.zttw.store/cdn/shop/files/zttw_26_4f980e9c-ea1f-47a6-8a2f-e086f091b1e3.jpg?v=1741958004&width=3000" alt="Armless Tee - Black" />
+      <div class="product-name">Armless Tee - Black</div>
+      <div class="sold-out">Sold out</div>
+    </div>
+
+    <!-- Product: Armless Tee - White (Sold Out) -->
+    <div class="product" data-name="Armless Tee - White" data-id="armless-white">
+      <img src="https://www.zttw.store/cdn/shop/files/zttw_25_e8dda1fe-2172-4fa1-bb4f-f8f65465a062.jpg?v=1741957997&width=3000" alt="Armless Tee - White" />
+      <div class="product-name">Armless Tee - White</div>
+      <div class="sold-out">Sold out</div>
+    </div>
+
+    <!-- Product: Black Pattern-Cut Top -->
+    <div class="product" data-name="Black Pattern-Cut Top" data-price="320000" data-id="pattern-top-black">
+      <img src="https://www.zttw.store/cdn/shop/files/zttw_51_10e04cd8-4da8-459c-a614-58272cddb652.jpg?v=1741958010&width=3000" alt="Black Pattern-Cut Top" />
+      <div class="product-name">Black Pattern-Cut Top</div>
+      <div class="price">₦320,000.00</div>
+      <button class="add-to-cart" 
+              onclick="addToCart('pattern-top-black', 'Black Pattern-Cut Top', 320000, 'https://www.zttw.store/cdn/shop/files/zttw_51_10e04cd8-4da8-459c-a614-58272cddb652.jpg?v=1741958010&width=3000')">
+        Add to Cart
+      </button>
+    </div>
+
+    <!-- Product: Black Pattern-Cut Shorts -->
+    <div class="product" data-name="Black Pattern-Cut Shorts" data-price="240000" data-id="pattern-shorts-black">
+      <img src="https://www.zttw.store/cdn/shop/files/zttw_53_8e95ed70-7bd8-46eb-b431-47c1067f51a3.jpg?v=1741957993&width=3000" alt="Black Pattern-Cut Shorts" />
+      <div class="product-name">Black Pattern-Cut Shorts</div>
+      <div class="price">₦240,000.00</div>
+      <button class="add-to-cart" 
+              onclick="addToCart('pattern-shorts-black', 'Black Pattern-Cut Shorts', 240000, 'https://www.zttw.store/cdn/shop/files/zttw_53_8e95ed70-7bd8-46eb-b431-47c1067f51a3.jpg?v=1741957993&width=3000')">
+        Add to Cart
+      </button>
+    </div>
   </div>
-
-  <!-- Product: Pulse of Sound - White -->
-  <div class="product" data-name="Pulse of Sound - White" data-price="23" data-id="pulse-white">
-    <img src="TIMELESS/PULSEOFSOUNDWHITE.jpg" alt="Pulse of Sound T-Shirt - White" />
-    <div class="product-name">Pulse of Sound - White</div>
-    <div class="price">$23.00</div>
-    <button class="add-to-cart" 
-            onclick="addToCart('pulse-white', 'Pulse of Sound - White', 23, 'TIMELESS/PULSEOFSOUNDWHITE.jpg')">
-      Add to Cart
-    </button>
-  </div>
-
-  <!-- Product: Brown Camo Jorts -->
-  <div class="product" data-name="Brown Camo Jorts" data-price="320000" data-id="jorts-brown">
-    <img src="https://www.zttw.store/cdn/shop/files/z43.png?v=1754337498&width=3000" alt="Brown Camo Jorts" />
-    <div class="product-name">Brown Camo Jorts</div>
-    <div class="price">₦320,000.00</div>
-    <button class="add-to-cart" 
-            onclick="addToCart('jorts-brown', 'Brown Camo Jorts', 320000, 'https://www.zttw.store/cdn/shop/files/z43.png?v=1754337498&width=3000')">
-      Add to Cart
-    </button>
-  </div>
-
-  <!-- Product: Armless Tee - Black (Sold Out) -->
-  <div class="product" data-name="Armless Tee - Black" data-id="armless-black">
-    <img src="https://www.zttw.store/cdn/shop/files/zttw_26_4f980e9c-ea1f-47a6-8a2f-e086f091b1e3.jpg?v=1741958004&width=3000" alt="Armless Tee - Black" />
-    <div class="product-name">Armless Tee - Black</div>
-    <div class="sold-out">Sold out</div>
-  </div>
-
-  <!-- Product: Armless Tee - White (Sold Out) -->
-  <div class="product" data-name="Armless Tee - White" data-id="armless-white">
-    <img src="https://www.zttw.store/cdn/shop/files/zttw_25_e8dda1fe-2172-4fa1-bb4f-f8f65465a062.jpg?v=1741957997&width=3000" alt="Armless Tee - White" />
-    <div class="product-name">Armless Tee - White</div>
-    <div class="sold-out">Sold out</div>
-  </div>
-
-  <!-- Product: Black Pattern-Cut Top -->
-  <div class="product" data-name="Black Pattern-Cut Top" data-price="320000" data-id="pattern-top-black">
-    <img src="https://www.zttw.store/cdn/shop/files/zttw_51_10e04cd8-4da8-459c-a614-58272cddb652.jpg?v=1741958010&width=3000" alt="Black Pattern-Cut Top" />
-    <div class="product-name">Black Pattern-Cut Top</div>
-    <div class="price">₦320,000.00</div>
-    <button class="add-to-cart" 
-            onclick="addToCart('pattern-top-black', 'Black Pattern-Cut Top', 320000, 'https://www.zttw.store/cdn/shop/files/zttw_51_10e04cd8-4da8-459c-a614-58272cddb652.jpg?v=1741958010&width=3000')">
-      Add to Cart
-    </button>
-  </div>
-
-  <!-- Product: Black Pattern-Cut Shorts -->
-  <div class="product" data-name="Black Pattern-Cut Shorts" data-price="240000" data-id="pattern-shorts-black">
-    <img src="https://www.zttw.store/cdn/shop/files/zttw_53_8e95ed70-7bd8-46eb-b431-47c1067f51a3.jpg?v=1741957993&width=3000" alt="Black Pattern-Cut Shorts" />
-    <div class="product-name">Black Pattern-Cut Shorts</div>
-    <div class="price">₦240,000.00</div>
-    <button class="add-to-cart" 
-            onclick="addToCart('pattern-shorts-black', 'Black Pattern-Cut Shorts', 240000, 'https://www.zttw.store/cdn/shop/files/zttw_53_8e95ed70-7bd8-46eb-b431-47c1067f51a3.jpg?v=1741957993&width=3000')">
-      Add to Cart
-    </button>
-  </div>
-
-</div>
 
   <!-- Hero Section -->
   <div class="hero">
     <img src="TIMELESS/Mamba.jpg" alt="Model in TIMELESS wear" />
-    <img src="TIMELESS/bckgrnd.jpg" alt="TIMELESS   detail" />
+    <img src="TIMELESS/bckgrnd.jpg" alt="TIMELESS detail" />
   </div>
 
   <!-- CTA Section -->
@@ -526,61 +579,214 @@
       <p>You Will Receive All The Information Regarding The Next Drops.</p>
     </div>
     <form class="subscribe-form" action="/api/subscribe" method="POST">
-  <input type="email" name="email" placeholder="Email Address" required />
-  <button type="submit">SUBSCRIBE →</button>
-</form>
+      <input type="email" name="email" placeholder="Email Address" required />
+      <button type="submit">SUBSCRIBE →</button>
+    </form>
   </section>
 
   <!-- Footer -->
   <footer>
     <h3>FOLLOW US</h3>
     <div class="social-icons">
-     <a href="https://www.instagram.com/timeless_since_1982?igsh=Y2VxdGN0OWJ5bmlh&utm_source=qr" 
-       target="_blank" 
-       title="Follow on Instagram">
-      <img src="TIMELESS/instagramlogo.webp" 
-           alt="Instagram" 
-           style="width: 24px; height: 24px; vertical-align: middle;">
-    </a>
+      <a href="https://www.instagram.com/timeless_since_1982?igsh=Y2VxdGN0OWJ5bmlh&utm_source=qr" target="_blank" title="Follow on Instagram">
+        <img src="TIMELESS/instagramlogo.webp" alt="Instagram" style="width: 24px; height: 24px; vertical-align: middle;">
+      </a>
       <a href="https://wa.me/2348166514620" target="_blank" title="Chat on WhatsApp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 24px; height: 24px; vertical-align: middle;">
       </a>
-      <a href="https://www.tiktok.com/@t_m_l11?_t=ZS-8zCbWUrObPY&_r=1" 
-       target="_blank" 
-       title="Follow on TikTok">
-      <img src="TIMELESS/tiktoklogo.webp" 
-           alt="TikTok" 
-           style="width: 24px; height: 24px; vertical-align: middle;">
-    </a>
+      <a href="https://www.tiktok.com/@t_m_l11?_t=ZS-8zCbWUrObPY&_r=1" target="_blank" title="Follow on TikTok">
+        <img src="TIMELESS/tiktoklogo.webp" alt="TikTok" style="width: 24px; height: 24px; vertical-align: middle;">
+      </a>
     </div>
   </footer>
 
-  <script>
-  // =============== CART FUNCTIONS ===============
+  <!-- Product Detail Modal -->
+  <div id="productModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div style="display: flex; flex: 1; overflow: hidden;">
+        <div style="flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; background: #f9f9f9;">
+          <img id="modalImage" src="" alt="Product" style="max-width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px;">
+        </div>
+        <div style="flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: flex-start;">
+          <h1 id="modalName" style="font-size: 24px; margin-bottom: 10px; color: #000;"></h1>
+          <div id="modalPrice" style="font-size: 18px; font-weight: 500; color: #000; margin-bottom: 20px;"></div>
+
+          <div style="margin-bottom: 20px;">
+            <strong style="display: block; margin-bottom: 8px; font-size: 14px; color: #333;">Size</strong>
+            <div style="display: flex; gap: 8px;">
+              <button class="size-btn " data-size="S">S</button>
+              <button class="size-btn" data-size="M">M</button>
+              <button class="size-btn" data-size="L">L</button>
+              <button class="size-btn" data-size="XL">XL</button>
+              <button class="size-btn" data-size="2XL">2XL</button>
+              <button class="size-btn" data-size="3XL">3XL</button>
+            </div>
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <strong style="display: block; margin-bottom: 8px; font-size: 14px; color: #333;">Quantity</strong>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+              <input type="number" class="quantity-input" id="quantity" value="1" min="1" style="width: 50px; text-align: center; border: 1px solid #ddd; padding: 5px;">
+              <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; margin-top: auto;">
+            <button class="btn-add-to-cart" onclick="addToCartFromModal()">Add to Cart</button>
+            <button class="btn-buy-now" onclick="buyNowFromModal()">Buy it now →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  // === CART & MODAL LOGIC ===
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  let currentProduct = null;
 
-  function addToCart(id, name, price, image) {
-    const existing = cart.find(item => item.id === id);
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ id, name, price, image, quantity: 1 });
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    alert(`${name} added to cart!`);
-  }
-
+  // Update cart badge on header
   function updateCartCount() {
-    const el = document.getElementById('cart-count');
-    if (el) {
-      el.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    const cartIcon = document.querySelector('.icons a[href="cart.html"]');
+    if (cartIcon) {
+      cartIcon.textContent = '🛍️' ;
     }
   }
 
-  document.addEventListener('DOMContentLoaded', updateCartCount);
+  // Open modal
+  function openProductModal(productId) {
+    const product = document.querySelector(`.product[data-id="${productId}"]`);
+    if (!product || product.querySelector('.sold-out')) {
+      alert("This product is sold out.");
+      return;
+    }
 
-  // =============== SEARCH FUNCTIONALITY ===============
+    const name = product.getAttribute('data-name');
+    const priceText = product.querySelector('.price')?.textContent || '';
+    const imageSrc = product.querySelector('img').src;
+    const priceValue = parseFloat(priceText.replace(/[^\d.-]/g, '')) || 0;
+
+    document.getElementById('modalName').textContent = name;
+    document.getElementById('modalPrice').textContent = priceText;
+    document.getElementById('modalImage').src = imageSrc;
+
+    currentProduct = {
+      id: productId,
+      name: name,
+      price: priceValue,
+      image: imageSrc,
+      size: null,
+      quantity: 1
+    };
+
+    resetSizeSelection();
+    document.getElementById('quantity').value = 1;
+    document.getElementById('productModal').style.display = 'flex';
+  }
+
+  // Close modal
+  document.querySelector('.close').onclick = function () {
+    document.getElementById('productModal').style.display = 'none';
+  };
+
+  window.onclick = function (event) {
+    const modal = document.getElementById('productModal');
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  };
+
+  // Size selection
+  function resetSizeSelection() {
+    document.querySelectorAll('.size-btn').forEach(btn => {
+      btn.classList.remove('selected');
+      btn.style.background = '#fff';
+      btn.style.color = '#000';
+      btn.style.borderColor = '#ddd';
+    });
+  }
+
+  document.querySelectorAll('.size-btn').forEach(btn => {
+    btn.addEventListener('click', function () {
+      resetSizeSelection();
+      this.classList.add('selected');
+      this.style.background = '#000';
+      this.style.color = '#fff';
+      this.style.borderColor = '#000';
+      currentProduct.size = this.getAttribute('data-size');
+    });
+  });
+
+  // Quantity controls
+  function increaseQuantity() {
+    const input = document.getElementById('quantity');
+    input.value = parseInt(input.value) + 1;
+    currentProduct.quantity = parseInt(input.value);
+  }
+
+  function decreaseQuantity() {
+    const input = document.getElementById('quantity');
+    if (parseInt(input.value) > 1) {
+      input.value = parseInt(input.value) - 1;
+      currentProduct.quantity = parseInt(input.value);
+    }
+  }
+
+  // Add to Cart from Modal
+  function addToCartFromModal() {
+    if (!currentProduct) return;
+    if (!currentProduct.size) {
+      alert("Please select a size.");
+      return;
+    }
+
+    const { id, name, price, image, size, quantity } = currentProduct;
+    const cartId = `${id}-${size}`;
+
+    const existing = cart.find(item => item.cartId === cartId);
+    if (existing) {
+      existing.quantity += quantity;
+    } else {
+      cart.push({ cartId, id, name, price, image, size, quantity });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();  // Update UI
+    alert(`${name} (${size}) added to cart!`);
+    document.getElementById('productModal').style.display = 'none';
+  }
+
+  // Buy Now
+  function buyNowFromModal() {
+    if (!currentProduct || !currentProduct.size) {
+      alert("Please select a size.");
+      return;
+    }
+    addToCartFromModal();
+    setTimeout(() => {
+      window.location.href = "cart.html";
+    }, 500);
+  }
+
+  // Make products clickable
+  document.querySelectorAll('.product').forEach(product => {
+    product.addEventListener('click', function (e) {
+      if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+      const productId = this.getAttribute('data-id');
+      openProductModal(productId);
+    });
+
+    const buttons = product.querySelectorAll('button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', e => e.stopPropagation());
+    });
+  });
+
+  // === SEARCH FUNCTIONALITY ===
   function toggleSearch() {
     const container = document.getElementById('searchContainer');
     const input = document.getElementById('searchInput');
@@ -595,80 +801,22 @@
     }
   }
 
-  async function searchProducts() {
-    const query = document.getElementById('searchInput').value.trim();
-    const container = document.querySelector('.products');
-    const currentProducts = document.querySelectorAll('.product');
-
-    if (!query) {
-      resetAllProducts();
-      return;
+  function handleSearchEnter(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const query = document.getElementById("searchInput").value.trim();
+      if (query) {
+        window.location.href = `all-products.html?q=${encodeURIComponent(query)}`;
+      }
     }
-
-    try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-      if (!response.ok) throw new Error('Search failed');
-      
-      const data = await response.json();
-
-      // Hide all current products
-      currentProducts.forEach(p => p.style.display = 'none');
-      
-      // Remove any dynamically added items (from previous search)
-      document.querySelectorAll('.product-temp').forEach(el => el.remove());
-
-      // Show matching products
-      data.results.forEach(product => {
-        if (!product.price || !product.image) return; // Skip sold-out or invalid
-
-        const existing = document.querySelector(`.product[data-id="${product.id}"]`);
-        
-        if (existing) {
-          existing.style.display = 'block';
-        } else {
-          // Create new product card
-          const priceFormatted = `${product.currency}${Number(product.price).toLocaleString()}`;
-          
-          const div = document.createElement('div');
-          div.className = 'product product-temp'; // Mark as temporary
-          div.setAttribute('data-id', product.id);
-          div.setAttribute('data-name', product.name);
-
-          div.innerHTML = `
-            <img src="${product.image}" alt="${product.name}" />
-            <div class="product-name">${product.name}</div>
-            <div class="price">${priceFormatted}</div>
-            <button class="add-to-cart"
-                    onclick="addToCart('${product.id}', '${product.name}', ${product.price}, '${product.image}')">
-              Add to Cart
-            </button>
-          `;
-          container.appendChild(div);
-        }
-      });
-
-    } catch (err) {
-      console.warn("API search failed, falling back:", err);
-      fallbackSearch(query);
-    }
-  }
-
-  function fallbackSearch(query) {
-    const q = query.toLowerCase();
-    document.querySelectorAll('.product').forEach(p => {
-      const name = p.getAttribute('data-name').toLowerCase();
-      p.style.display = name.includes(q) ? 'block' : 'none';
-    });
   }
 
   function resetAllProducts() {
-    document.querySelectorAll('.product').forEach(p => {
-      p.style.display = 'block';
-    });
+    document.querySelectorAll('.product').forEach(p => p.style.display = 'block');
     document.querySelectorAll('.product-temp').forEach(el => el.remove());
   }
 
-  // =============== NAVIGATION ===============
+  // === NAVIGATION ===
   function toggleSubNav(e) { 
     e.preventDefault(); 
     document.getElementById('subNav').classList.toggle('active'); 
@@ -685,107 +833,9 @@
   function toggleMenu() {
     document.getElementById('mobileMenu').classList.toggle('active');
   }
-  // =============== CART & SEARCH SCRIPT ===============
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  function addToCart(id, name, price, image) {
-    const existing = cart.find(item => item.id === id);
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ id, name, price, image, quantity: 1 });
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    alert(`${name} added to cart!`);
-  }
-
-  function updateCartCount() {
-    const el = document.getElementById('cart-count');
-    if (el) el.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-  }
-
+  // Initialize cart count on page load
   document.addEventListener('DOMContentLoaded', updateCartCount);
-
-  // =============== GLOBAL SEARCH ===============
-  function toggleSearch() {
-    const input = document.getElementById('searchInput');
-    const dropdown = document.getElementById('searchDropdown');
-    const isHidden = dropdown.style.display === 'none' || !dropdown.style.display;
-
-    if (isHidden) {
-      input.style.width = '200px';
-      dropdown.style.display = 'block';
-      input.focus();
-    } else {
-      input.style.width = '0';
-      dropdown.style.display = 'none';
-    }
-  }
-
-  async function handleSearchInput(query) {
-    const suggestionsEl = document.getElementById('suggestions');
-    const productsEl = document.getElementById('products');
-
-    if (!query.trim()) {
-      suggestionsEl.innerHTML = '';
-      productsEl.innerHTML = '';
-      return;
-    }
-
-    try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-      const data = await response.json();
-
-      // Suggestions
-      suggestionsEl.innerHTML = `
-        <strong>SUGGESTIONS</strong><br/>
-        ${data.suggestions.slice(0, 5).map(s => 
-          `<span class="suggestion-item" onclick="searchFor('${s}')">${s}</span><br/>`
-        ).join('')}
-      `;
-
-      // Products
-      productsEl.innerHTML = `
-        <strong>${data.total} RESULTS FOR '${query.toUpperCase()}'</strong>
-        <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px;">
-          ${data.results.map(p => {
-            if (p.available === false) return '';
-            return `
-              <div class="product-preview">
-                <img src="${p.image}" alt="${p.name}" />
-                <div style="font-size: 12px; margin: 5px 0;">${p.name}</div>
-                ${p.price ? `<div>${p.currency}${Number(p.price).toLocaleString()}</div>` : ''}
-                ${p.price ? `<button class="add-to-cart-btn" onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${p.image}')">Add to Cart</button>` : ''}
-              </div>`;
-          }).join('')}
-        </div>
-      `;
-    } catch (err) {
-      productsEl.innerHTML = '<em>Search failed. Try again.</em>';
-    }
-  }
-
-  function searchFor(term) {
-    document.getElementById('searchInput').value = term;
-    handleSearchInput(term);
-  }
-
-  // Close dropdown when clicking elsewhere
-  document.addEventListener('click', (e) => {
-    const input = document.getElementById('searchInput');
-    const dropdown = document.getElementById('searchDropdown');
-    if (!input.contains(e.target) && !dropdown.contains(e.target)) {
-      dropdown.style.display = 'none';
-      input.style.width = '0';
-    }
-  });
-
-  // Navigation functions (keep yours below)
-  function toggleMenu() {
-    document.getElementById('mobileMenu')?.classList.toggle('active');
-  }
-
 </script>
 </body>
 </html>

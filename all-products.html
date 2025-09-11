@@ -31,43 +31,6 @@
       z-index: 100;
       border-bottom: 1px solid #eee;
     }
-  
-  .search-bar input:focus {
-    outline: none;
-  }
-  #searchDropdown {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: white;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    z-index: 1000;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 15px 20px;
-    display: none;
-  }
-  .product-preview {
-    flex: 1;
-    min-width: 150px;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  .product-preview img {
-    width: 100%;
-    height: 120px;
-    object-fit: cover;
-    border: 1px solid #eee;
-  }
-  .suggestion-item {
-    padding: 8px 0;
-    cursor: pointer;
-  }
-  .suggestion-item:hover {
-    color: #000;
-  }
-
 
     .logo img {
       height: 120px;
@@ -286,10 +249,7 @@
       flex: 1;
     }
 
-    .add-to-cart-btn {
-      background: #000;
-      color: white;
-    }
+    
 
     .buy-now-btn {
       background: #000;
@@ -378,7 +338,7 @@
       type="text" 
       id="searchInput" 
       placeholder="Search products..." 
-      oninput="searchProducts()"
+      onkeydown="handleSearchEnter(event)"  
       style="width: 100%; padding: 12px; font-size: 16px; border: 1px solid #ddd; border-radius: 6px; outline: none;"
     >
   </div>
@@ -532,108 +492,6 @@
   </footer>
   
   <script>
-  // =============== CART & SEARCH SCRIPT ===============
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  function addToCart(id, name, price, image) {
-    const existing = cart.find(item => item.id === id);
-    if (existing) {
-      existing.quantity += 1;
-    } else {
-      cart.push({ id, name, price, image, quantity: 1 });
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
-    updateCartCount();
-    alert(`${name} added to cart!`);
-  }
-
-  function updateCartCount() {
-    const el = document.getElementById('cart-count');
-    if (el) el.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-  }
-
-  document.addEventListener('DOMContentLoaded', updateCartCount);
-
-  // =============== GLOBAL SEARCH ===============
-  function toggleSearch() {
-    const input = document.getElementById('searchInput');
-    const dropdown = document.getElementById('searchDropdown');
-    const isHidden = dropdown.style.display === 'none' || !dropdown.style.display;
-
-    if (isHidden) {
-      input.style.width = '200px';
-      dropdown.style.display = 'block';
-      input.focus();
-    } else {
-      input.style.width = '0';
-      dropdown.style.display = 'none';
-    }
-  }
-
-  async function handleSearchInput(query) {
-    const suggestionsEl = document.getElementById('suggestions');
-    const productsEl = document.getElementById('products');
-
-    if (!query.trim()) {
-      suggestionsEl.innerHTML = '';
-      productsEl.innerHTML = '';
-      return;
-    }
-
-    try {
-      const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-      const data = await response.json();
-
-      // Suggestions
-      suggestionsEl.innerHTML = `
-        <strong>SUGGESTIONS</strong><br/>
-        ${data.suggestions.slice(0, 5).map(s => 
-          `<span class="suggestion-item" onclick="searchFor('${s}')">${s}</span><br/>`
-        ).join('')}
-      `;
-
-      // Products
-      productsEl.innerHTML = `
-        <strong>${data.total} RESULTS FOR '${query.toUpperCase()}'</strong>
-        <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px;">
-          ${data.results.map(p => {
-            if (p.available === false) return '';
-            return `
-              <div class="product-preview">
-                <img src="${p.image}" alt="${p.name}" />
-                <div style="font-size: 12px; margin: 5px 0;">${p.name}</div>
-                ${p.price ? `<div>${p.currency}${Number(p.price).toLocaleString()}</div>` : ''}
-                ${p.price ? `<button class="add-to-cart-btn" onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${p.image}')">Add to Cart</button>` : ''}
-              </div>`;
-          }).join('')}
-        </div>
-      `;
-    } catch (err) {
-      productsEl.innerHTML = '<em>Search failed. Try again.</em>';
-    }
-  }
-
-  function searchFor(term) {
-    document.getElementById('searchInput').value = term;
-    handleSearchInput(term);
-  }
-
-  // Close dropdown when clicking elsewhere
-  document.addEventListener('click', (e) => {
-    const input = document.getElementById('searchInput');
-    const dropdown = document.getElementById('searchDropdown');
-    if (!input.contains(e.target) && !dropdown.contains(e.target)) {
-      dropdown.style.display = 'none';
-      input.style.width = '0';
-    }
-  });
-
-  // Navigation functions (keep yours below)
-  function toggleMenu() {
-    document.getElementById('mobileMenu')?.classList.toggle('active');
-  }
-
-    
   // ===== CART MANAGEMENT =====
   // Load cart from localStorage or initialize empty
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -841,6 +699,16 @@
       mobileMenu.classList.remove('active');
     }
   });
+    function handleSearchEnter(event) {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      const query = document.getElementById("searchInput").value.trim();
+      if (query) {
+        window.location.href = `all-products.html?q=${encodeURIComponent(query)}`;
+      }
+    }
+  }
+
   </script>
 </body>
 </html>
