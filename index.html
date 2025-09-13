@@ -100,28 +100,27 @@
       color: #000;
     }
 
+    /* Hero Video */
     .hero-container {
-  max-width: 1400px;
-  margin: 60px auto;
-  padding: 0 20px;
-}
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
 
-.hero-video {
-  width: 98%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  display: block;
-}
+    .hero-video {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: block;
+    }
 
-/* Responsive adjustment for smaller screens */
-@media (max-width: 768px) {
-  .hero-video {
-    height: auto;
-    max-height: none;
-  }
-}
+    @media (max-width: 768px) {
+      .hero-video {
+        height: auto;
+      }
+    }
 
     /* Products Grid */
     .products {
@@ -200,6 +199,31 @@
       font-size: 16px;
       color: #000;
       font-weight: 500;
+    }
+
+    /* Color Options */
+    .color-options {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 10px 0 5px;
+    }
+
+    .color-option {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #ddd;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+
+    .color-option.selected {
+      border: 2px solid #000;
     }
 
     /* Modal */
@@ -367,13 +391,72 @@
       text-decoration: none;
     }
 
+    /* Social Buttons */
+    .social-links {
+      display: flex;
+      gap: 20px;
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 20px;
+      justify-content: center;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: #000;
+      color: white;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+      min-width: 200px;
+      justify-content: center;
+    }
+
+    .social-btn:hover {
+      background: #222;
+      transform: translateY(-2px);
+    }
+
+    .social-btn.whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .social-btn.tiktok {
+      background: #000;
+      color: white;
+    }
+
+    .social-btn img {
+      width: 20px;
+      height: 20px;
+      vertical-align: middle;
+    }
+
+    .social-stats {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      font-size: 14px;
+      color: #777;
+      margin-top: 10px;
+    }
+
+    .social-stats span {
+      font-weight: 500;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .nav { display: none; }
       .menu-toggle { display: block; }
       .icons { display: none; }
       .products { grid-template-columns: 1fr; gap: 15px; }
-      .hero-flex { flex-direction: column; }
       .subscribe-form input { width: 150px; }
     }
 
@@ -465,36 +548,37 @@
     <a href="#">Accessories</a>
   </div>
 
-  <!-- Hero Section: Video & Image Side by Side -->
+  <!-- Hero Video -->
   <div class="hero-container">
-      <div class="hero-video-wrapper">
-        <video 
-          controls ="false"
-          autoplay 
-          muted 
-          loop 
-          playsinline
-          class="hero-video"
-        >
-          <source src="TIMELESS/backgroundvid.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-      </div>
-    
-      <div class="hero-container">
-        <img src="TIMELESS/lookbook/pic9.jpg" alt="Mamba Series" style="width:100%; border-radius:8px;" />
-      </div>
-      
-      
-    </div>
+    <video 
+      autoplay 
+      muted 
+      loop 
+      playsinline 
+      controls="false" 
+      class="hero-video"
+    >
+      <source src="TIMELESS/backgroundvid.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <!-- Second Hero Image -->
+  <div class="hero-container">
+    <img src="TIMELESS/lookbook/pic9.jpg" alt="Mamba Series" style="width:100%; border-radius:8px;" />
   </div>
 
   <!-- Products Grid -->
   <div class="products">
 
     <!-- Men's Tank Top -->
-    <div class="product" onclick="openProduct('m-tank', 'Men\'s Tank Top', 25000, 'TIMELESS/tank top/black tank top.jpg')">
-      <div class="image-slider">
+    <div class="product"
+         data-id="m-tank"
+         data-name="Men's Tank Top"
+         data-price="25000"
+         data-default-img="TIMELESS/tank top/black tank top.jpg"
+         data-colors='["Black", "White", "Orange", "Green"]'>
+      <div class="image-slider" id="slider-m-tank-container">
         <button class="arrow left" onclick="prevSlide(event, 'm-tank')">‹</button>
         <div class="slider-track" id="slider-m-tank">
           <img class="slider-image" src="TIMELESS/tank top/black tank top.jpg" alt="Black">
@@ -506,11 +590,22 @@
       </div>
       <div class="product-name">Tank Top</div>
       <div class="price">₦25,000</div>
+      <div class="color-options" id="colors-m-tank">
+        <div class="color-option selected" data-color="Black" style="background:#000" onclick="changeProductColor('m-tank', 'Black')"></div>
+        <div class="color-option" data-color="White" style="background:#FFF;border:2px solid #000" onclick="changeProductColor('m-tank', 'White')"></div>
+        <div class="color-option" data-color="Orange" style="background:#FFA500" onclick="changeProductColor('m-tank', 'Orange')"></div>
+        <div class="color-option" data-color="Green" style="background:#008000" onclick="changeProductColor('m-tank', 'Green')"></div>
+      </div>
     </div>
 
     <!-- Gold Standard Shirt -->
-    <div class="product" onclick="openProduct('gold', 'Gold Standard Shirt', 50000, 'TIMELESS/gold standard/white gold standard.jpg')">
-      <div class="image-slider">
+    <div class="product"
+         data-id="gold"
+         data-name="Gold Standard Shirt"
+         data-price="50000"
+         data-default-img="TIMELESS/gold standard/white gold standard.jpg"
+         data-colors='["White", "Black"]'>
+      <div class="image-slider" id="slider-gold-container">
         <button class="arrow left" onclick="prevSlide(event, 'gold')">‹</button>
         <div class="slider-track" id="slider-gold">
           <img class="slider-image" src="TIMELESS/gold standard/white gold standard.jpg" alt="White">
@@ -520,11 +615,20 @@
       </div>
       <div class="product-name">Gold Standard Shirt</div>
       <div class="price">₦50,000</div>
+      <div class="color-options" id="colors-gold">
+        <div class="color-option selected" data-color="White" style="background:#FFF;border:2px solid #000" onclick="changeProductColor('gold', 'White')"></div>
+        <div class="color-option" data-color="Black" style="background:#000" onclick="changeProductColor('gold', 'Black')"></div>
+      </div>
     </div>
 
     <!-- Snapback Cap -->
-    <div class="product" onclick="openProduct('cap', 'Snapback Cap', 20000, 'TIMELESS/alpha caps/black cap.jpg')">
-      <div class="image-slider">
+    <div class="product"
+         data-id="cap"
+         data-name="Snapback Cap"
+         data-price="20000"
+         data-default-img="TIMELESS/alpha caps/black cap.jpg"
+         data-colors='["Black", "Pink", "Green", "Purple", "Blue", "Red"]'>
+      <div class="image-slider" id="slider-cap-container">
         <button class="arrow left" onclick="prevSlide(event, 'cap')">‹</button>
         <div class="slider-track" id="slider-cap">
           <img class="slider-image" src="TIMELESS/alpha caps/black cap.jpg" alt="Black">
@@ -538,6 +642,14 @@
       </div>
       <div class="product-name">Snapback Cap</div>
       <div class="price">₦20,000</div>
+      <div class="color-options" id="colors-cap">
+        <div class="color-option selected" data-color="Black" style="background:#000" onclick="changeProductColor('cap', 'Black')"></div>
+        <div class="color-option" data-color="Pink" style="background:#FFC0CB" onclick="changeProductColor('cap', 'Pink')"></div>
+        <div class="color-option" data-color="Green" style="background:#008000" onclick="changeProductColor('cap', 'Green')"></div>
+        <div class="color-option" data-color="Purple" style="background:#800080" onclick="changeProductColor('cap', 'Purple')"></div>
+        <div class="color-option" data-color="Blue" style="background:#0000FF" onclick="changeProductColor('cap', 'Blue')"></div>
+        <div class="color-option" data-color="Red" style="background:#FF0000" onclick="changeProductColor('cap', 'Red')"></div>
+      </div>
     </div>
 
   </div>
@@ -573,6 +685,9 @@
         <img src="TIMELESS/tiktoklogo.webp" alt="TikTok" style="width: 24px; height: 24px; vertical-align: middle;">
       </a>
     </div>
+    <p style="font-size:14px; color:#777; margin-top:10px;">
+      © 2025 TIMELESS. Crafted with care since 1982.
+    </p>
   </footer>
 
   <!-- Product Detail Modal -->
@@ -625,6 +740,18 @@
     // Slider positions for product image carousels
     const sliders = { 'm-tank': 0, 'gold': 0, 'cap': 0 };
 
+    // Color HEX Map
+    const colorHexMap = {
+      'Black': '#000000',
+      'White': '#FFFFFF',
+      'Orange': '#FFA500',
+      'Green': '#008000',
+      'Blue': '#0000FF',
+      'Pink': '#FFC0CB',
+      'Purple': '#800080',
+      'Red': '#FF0000'
+    };
+
     function updateCartCount() {
       const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
       const cartCountEl = document.getElementById('cart-count');
@@ -633,7 +760,6 @@
       }
     }
 
-    // Run on page load
     document.addEventListener('DOMContentLoaded', () => {
       updateCartCount();
     });
@@ -657,13 +783,34 @@
       track.style.transform = `translateX(-${sliders[productId] * 100}%)`;
     }
 
+    // Change product image by color
+    function changeProductColor(productId, color) {
+      const track = document.getElementById(`slider-${productId}`);
+      const images = Array.from(track.children);
+      let index = -1;
+
+      images.forEach((img, i) => {
+        if (img.alt.toLowerCase() === color.toLowerCase()) {
+          index = i;
+        }
+      });
+
+      if (index !== -1) {
+        sliders[productId] = index;
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        const buttons = document.querySelectorAll(`#colors-${productId} .color-option`);
+        buttons.forEach(btn => btn.classList.remove('selected'));
+        document.querySelector(`#colors-${productId} [data-color="${color}"]`).classList.add('selected');
+      }
+    }
+
     // === OPEN MODAL WITH PRODUCT DATA ===
     function openProduct(id, name, price, imageSrc) {
       document.getElementById('modalName').textContent = name;
       document.getElementById('modalPrice').textContent = `₦${price.toLocaleString()}`;
       document.getElementById('modalImage').src = imageSrc;
 
-      // Reset size selection
       document.querySelectorAll('.size-btn').forEach(btn => {
         btn.classList.remove('selected');
         btn.onclick = function () {
@@ -673,20 +820,8 @@
         };
       });
 
-      // Set default quantity
       document.getElementById('quantity').value = 1;
-
-      // Store current product
-      currentProduct = {
-        id,
-        name,
-        price,
-        image: imageSrc,
-        size: null,
-        quantity: 1
-      };
-
-      // Show modal
+      currentProduct = { id, name, price, image: imageSrc, size: null, quantity: 1 };
       document.getElementById('productModal').style.display = 'flex';
     }
 
@@ -785,7 +920,6 @@
       document.getElementById('mobileMenu').classList.toggle('active');
     }
 
-    // Close sub-nav when clicking outside
     document.addEventListener('click', (e) => {
       const subNav = document.getElementById('subNav');
       const shopLink = document.querySelector('.nav a[onclick]');
