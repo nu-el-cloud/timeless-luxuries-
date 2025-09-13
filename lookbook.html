@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lookbook | TIMELESS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 100;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo img {
+      height: 120px;
+      width: auto;
+      display: block;
+    }
+    
+    .nav {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #000;
+      cursor: pointer;
+      opacity: 0.8;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      opacity: 1;
+    }
+
+    .icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icons a {
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    /* Lookbook Grid - 4x2 Layout */
+    .lookbook-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .look-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      height: 300px;
+      cursor: pointer;
+    }
+
+    .look-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .look-item:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Join Community Section */
+    .community-section {
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .community-text h3 {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .community-text p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 10px;
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .subscribe-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-bottom: 2px solid #000;
+      font-size: 14px;
+      outline: none;
+    }
+
+    .subscribe-btn {
+      background: none;
+      border: none;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .subscribe-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Follow Us */
+    .follow-us {
+      display: flex;
+      gap: 15px;
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+
+    .social-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+      color: white;
+      border-radius: 50%;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    /* Back Link */
+    .back-link {
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 0 20px;
+      font-size: 14px;
+    }
+
+    .back-link a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      text-align: left;
+      max-width: 1400px;
+      margin: 0 auto;
+      border-top: 1px solid #eee;
+    }
+
+    footer h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="TIMELESS/timelesslogo.png" alt="TIMELESS">
+      </a>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="all-products.html">All Products</a>
+      <a href="#" class="active">Lookbook</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="icons">
+      <a href="#" title="Search">🔍</a>
+      <a href="cart.html" title="Cart">🛍️<span id="cart-count"></span></a>
+    </div>
+  </header>
+
+  <!-- Lookbook Grid -->
+  <div class="lookbook-grid">
+
+    <!-- Image 1 -->
+    <div class="look-item">
+      <img src="TIMELESS/lookbook/pic1.jpg" alt="">
+    </div>
+
+    <!-- Image 2 -->
+    <div class="look-item">
+      <img src="TIMELESS/lookbook/pic2.jpg" alt="Feet on Grass">
+    </div>
+
+    <!-- Image 3 -->
+    <div class="look-item">
+      <img src="TIMELESS/lookbook/pic3.jpg" alt="Legs in Field">
+    </div>
+
+    <!-- Image 4 -->
+    <div class="look-item">
+      <img src="TIMELESS/lookbook/pic4.jpg" alt="Close-up of Pants">
+    </div>
+
+    <!-- Image 5 -->
+    <div class="look-item">
+      <img src="TIMELESS/lookbook/pic5.jpg" alt="Model in Green Tracksuit">
+    </div>
+
+    <!-- Image 6 -->
+    <div class="look-item">
+      <img src="TIMELESS/lookbook/pic6.jpg" alt="Back of Black T-Shirt">
+    </div>
+
+    <!-- Image 7 -->
+    <div class="look-item">
+      <img src="TIMELESS/lookbook/pic7.jpg" alt="Two Models in Jerseys">
+    </div>
+
+    <!-- Image 8 -->
+    <div class="look-item">
+      <img src="TIMELESS/lookbook/pic8.jpg" alt="Model in Cap and White Tee">
+    </div>
+
+  </div>
+
+  <!-- Back to Home -->
+  <div class="back-link">
+    <a href="index.html">← Back to Home</a>
+  </div>
+
+  <!-- Join Community Section -->
+  <div class="community-section">
+    <div class="community-text">
+      <h3>JOIN THE COMMUNITY.</h3>
+      <p>You Will Receive All The Information Regarding The Next Drops.</p>
+    </div>
+    <form class="subscribe-form">
+      <input type="email" class="subscribe-input" placeholder="Email Address">
+      <button type="submit" class="subscribe-btn">SUBSCRIBE →</button>
+    </form>
+  </div>
+
+  <!-- Follow Us -->
+  <div class="follow-us">
+    <a href="https://www.instagram.com/timeless_since_1982" target="_blank" class="social-icon">📷</a>
+    <a href="https://wa.me/2348166514620" target="_blank" class="social-icon">💬</a>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <h3>FOLLOW US</h3>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/timeless_since_1982" target="_blank" title="Instagram">
+        <img src="TIMELESS/instagramlogo.webp" alt="Instagram">
+      </a>
+      <a href="https://wa.me/2348166514620" target="_blank" title="WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 24px; height: 24px;">
+      </a>
+      <a href="https://www.tiktok.com/@t_m_l11" target="_blank" title="TikTok">
+        <img src="TIMELESS/tiktoklogo.webp" alt="TikTok">
+      </a>
+    </div>
+  </footer>
+
+  <!-- Cart Count Script -->
+  <script>
+    // Update cart count from localStorage
+    const cartCountEl = document.getElementById('cart-count');
+    if (cartCountEl) {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      if (totalItems > 0) cartCountEl.textContent = totalItems;
+    }
+  </script>
+</body>
+</html>

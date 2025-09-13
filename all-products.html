@@ -92,12 +92,46 @@
       box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
     }
 
-    .product img {
+    /* Image Slider */
+    .image-slider {
       width: 100%;
-      height: auto;
-      object-fit: cover;
-      display: block;
+      height: 300px;
+      overflow: hidden;
+      position: relative;
     }
+
+    .slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .slider-image {
+      min-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.7);
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .arrow.left { left: 10px; }
+    .arrow.right { right: 10px; }
 
     .product-name {
       font-size: 14px;
@@ -114,15 +148,7 @@
       padding: 0 10px 5px;
     }
 
-    .sold-out {
-      color: #888;
-      font-style: italic;
-      margin: 5px 0;
-      font-size: 14px;
-      padding: 0 10px 10px;
-    }
-
-    /* Product Detail Modal */
+    /* Modal */
     .modal {
       display: none;
       position: fixed;
@@ -156,14 +182,6 @@
       right: 20px;
     }
 
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
-
-    /* Product detail layout */
     .product-detail {
       display: flex;
       flex-wrap: wrap;
@@ -232,6 +250,26 @@
       border: 1px solid #000;
     }
 
+    .color-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .color-option {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #ddd;
+    }
+
+    .color-option.selected {
+      border: 2px solid #000;
+      transform: scale(1.1);
+    }
+
     .button-group {
       display: flex;
       gap: 10px;
@@ -249,7 +287,10 @@
       flex: 1;
     }
 
-    
+    .add-to-cart-btn {
+      background: #000;
+      color: white;
+    }
 
     .buy-now-btn {
       background: #000;
@@ -280,7 +321,6 @@
     }
 
     .social-icons a {
-      font-size: 18px;
       color: #000;
       text-decoration: none;
     }
@@ -322,8 +362,7 @@
     <nav class="nav">
       <a href="index.html">Home</a>
       <a href="all-products.html" style="color: #000; opacity: 0.8;">All Products</a>
-      <a href="#">Collections</a>
-      <a href="#">Lookbook</a>
+      <a href="lookbook.html">Lookbook</a>
       <a href="about.html">About</a>
     </nav>
     <div class="icons">
@@ -332,7 +371,7 @@
     </div>
   </header>
   
-  <!-- Search Input (Hidden by Default) -->
+  <!-- Search Input -->
   <div id="searchContainer" style="display: none; max-width: 1400px; margin: 20px auto; padding: 0 20px;">
     <input 
       type="text" 
@@ -350,92 +389,134 @@
 
   <!-- Products Grid -->
   <div class="products" id="productsGrid">
-    <!-- Product: Baseball hat - Black (Sold Out) -->
-    <div class="product" data-name="Baseball hat - Black" data-id="hat-black">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_48.jpg?v=1733571775&width=3000" alt="Baseball hat - Black" />
-      <div class="product-name">Baseball hat - Black</div>
-      <div class="sold-out">Sold out</div>
+
+    <!-- Pulse of Sound T-Shirt -->
+    <div class="product"
+         data-id="pulse"
+         data-name="Pulse of Sound T-Shirt"
+         data-price="50000"
+         data-default-img="TIMELESS/PULSEOFSOUNDWHITE.jpg"
+         data-colors='["White", "Black"]'>
+      <div class="image-slider">
+        <button class="arrow left" onclick="prevSlide(event, 'pulse')">‹</button>
+        <div class="slider-track" id="slider-pulse">
+          <img class="slider-image" src="TIMELESS/PULSEOFSOUNDWHITE.jpg" alt="White">
+          <img class="slider-image" src="TIMELESS/PULSEOFSOUNDBLACK.jpg" alt="Black">
+        </div>
+        <button class="arrow right" onclick="nextSlide(event, 'pulse')">›</button>
+      </div>
+      <div class="product-name">Pulse of Sound T-Shirt</div>
+      <div class="price">₦50,000</div>
     </div>
 
-    <!-- Product: Baseball hat - Blue -->
-    <div class="product" data-name="Baseball hat - Blue" data-price="160000" data-id="hat-blue" onclick="openProductDetail('hat-blue', 'Baseball hat - Blue', 160000, 'https://www.zttw.store/cdn/shop/files/zttw_52.jpg?v=1733571780&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_52.jpg?v=1733571780&width=3000" alt="Baseball hat - Blue" />
-      <div class="product-name">Baseball hat - Blue</div>
-      <div class="price">₦160,000.00</div>
+    <!-- Gold Standard Shirt -->
+    <div class="product"
+         data-id="gold"
+         data-name="Gold Standard Shirt"
+         data-price="50000"
+         data-default-img="TIMELESS/gold standard/white gold standard.jpg"
+         data-colors='["White", "Black"]'>
+      <div class="image-slider">
+        <button class="arrow left" onclick="prevSlide(event, 'gold')">‹</button>
+        <div class="slider-track" id="slider-gold">
+          <img class="slider-image" src="TIMELESS/gold standard/white gold standard.jpg" alt="White">
+          <img class="slider-image" src="TIMELESS/gold standard/black gold standard.jpg" alt="Black">
+        </div>
+        <button class="arrow right" onclick="nextSlide(event, 'gold')">›</button>
+      </div>
+      <div class="product-name">Gold Standard Shirt</div>
+      <div class="price">₦50,000</div>
     </div>
 
-    <!-- Product: Baseball hat - Cream -->
-    <div class="product" data-name="Baseball hat - Cream" data-price="160000" data-id="hat-cream" onclick="openProductDetail('hat-cream', 'Baseball hat - Cream', 160000, 'https://www.zttw.store/cdn/shop/files/zttw_50.jpg?v=1733571776&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_50.jpg?v=1733571776&width=3000" alt="Baseball hat - Cream" />
-      <div class="product-name">Baseball hat - Cream</div>
-      <div class="price">₦160,000.00</div>
+    <!-- Casual Shorts -->
+    <div class="product"
+         data-id="shorts"
+         data-name="Casual Shorts"
+         data-price="25000"
+         data-default-img="TIMELESS/white short.jpg"
+         data-colors='["White", "Black", "Red", "Blue"]'>
+      <div class="image-slider">
+        <button class="arrow left" onclick="prevSlide(event, 'shorts')">‹</button>
+        <div class="slider-track" id="slider-shorts">
+          <img class="slider-image" src="TIMELESS/white short.jpg" alt="White">
+          <img class="slider-image" src="TIMELESS/black short.jpg" alt="Black">
+          <img class="slider-image" src="TIMELESS/red short.jpg" alt="Red">
+          <img class="slider-image" src="TIMELESS/blue short.jpg" alt="Blue">
+        </div>
+        <button class="arrow right" onclick="nextSlide(event, 'shorts')">›</button>
+      </div>
+      <div class="product-name">Casual Shorts</div>
+      <div class="price">₦25,000</div>
     </div>
 
-    <!-- Product: Black Camo Hat -->
-    <div class="product" data-name="Black Camo Hat" data-price="160000" data-id="hat-camo-black" onclick="openProductDetail('hat-camo-black', 'Black Camo Hat', 160000, 'https://www.zttw.store/cdn/shop/files/zttw_45_21693ff9-273f-45b6-afb5-a24ae2a9428f.jpg?v=1741957993&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_45_21693ff9-273f-45b6-afb5-a24ae2a9428f.jpg?v=1741957993&width=3000" alt="Black Camo Hat" />
-      <div class="product-name">Black Camo Hat</div>
-      <div class="price">₦160,000.00</div>
+    <!-- Men's Tank Top -->
+    <div class="product"
+         data-id="m-tank"
+         data-name="Men's Tank Top"
+         data-price="25000"
+         data-default-img="TIMELESS/tank top/black tank top.jpg"
+         data-colors='["Black", "White", "Orange", "Green"]'>
+      <div class="image-slider">
+        <button class="arrow left" onclick="prevSlide(event, 'm-tank')">‹</button>
+        <div class="slider-track" id="slider-m-tank">
+          <img class="slider-image" src="TIMELESS/tank top/black tank top.jpg" alt="Black">
+          <img class="slider-image" src="TIMELESS/tank top/white tank top.jpg" alt="White">
+          <img class="slider-image" src="TIMELESS/tank top/orange tank top.jpg" alt="Orange">
+          <img class="slider-image" src="TIMELESS/tank top/green tank top.jpg" alt="Green">
+        </div>
+        <button class="arrow right" onclick="nextSlide(event, 'm-tank')">›</button>
+      </div>
+      <div class="product-name"> Tank Top</div>
+      <div class="price">₦25,000</div>
     </div>
 
-    <!-- Product: Black Camo Puffer Shorts -->
-    <div class="product" data-name="Black Camo Puffer Shorts" data-price="320000" data-id="puffer-shorts-black" onclick="openProductDetail('puffer-shorts-black', 'Black Camo Puffer Shorts', 320000, 'https://www.zttw.store/cdn/shop/files/zttw_13_267df2cb-be95-4bee-b400-2a0bb9037e51.jpg?v=1741957991&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_13_267df2cb-be95-4bee-b400-2a0bb9037e51.jpg?v=1741957991&width=3000" alt="Black Camo Puffer Shorts" />
-      <div class="product-name">Black Camo Puffer Shorts</div>
-      <div class="price">₦320,000.00</div>
+    <!-- Women's Crop Top -->
+    <div class="product"
+         data-id="f-crop"
+         data-name="Women's Crop Top"
+         data-price="25000"
+         data-default-img="TIMELESS/crop tops/blue crop top .jpg"
+         data-colors='["Blue", "Pink", "White", "Black"]'>
+      <div class="image-slider">
+        <button class="arrow left" onclick="prevSlide(event, 'f-crop')">‹</button>
+        <div class="slider-track" id="slider-f-crop">
+          <img class="slider-image" src="TIMELESS/crop tops/blue crop top .jpg" alt="Blue">
+          <img class="slider-image" src="TIMELESS/crop tops/pink crop top.jpg" alt="Pink">
+          <img class="slider-image" src="TIMELESS/crop tops/white crop top .jpg" alt="White">
+          <img class="slider-image" src="TIMELESS/crop tops/black crop top.jpg" alt="Black">
+        </div>
+        <button class="arrow right" onclick="nextSlide(event, 'f-crop')">›</button>
+      </div>
+      <div class="product-name"> Crop Top</div>
+      <div class="price">₦25,000</div>
     </div>
 
-    <!-- Product: Black Camo Puffer Top -->
-    <div class="product" data-name="Black Camo Puffer Top" data-price="320000" data-id="puffer-top-black" onclick="openProductDetail('puffer-top-black', 'Black Camo Puffer Top', 320000, 'https://www.zttw.store/cdn/shop/files/zttw_11_ca2fe38e-dfca-4b4a-ac93-7bd0012a0e14.jpg?v=1741958027&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_11_ca2fe38e-dfca-4b4a-ac93-7bd0012a0e14.jpg?v=1741958027&width=3000" alt="Black Camo Puffer Top" />
-      <div class="product-name">Black Camo Puffer Top</div>
-      <div class="price">₦320,000.00</div>
+    <!-- Snapback Cap -->
+    <div class="product"
+         data-id="cap"
+         data-name="Snapback Cap"
+         data-price="20000"
+         data-default-img="TIMELESS/alpha caps/black cap.jpg"
+         data-colors='["Black", "Pink", "Green", "Purple", "Blue", "Red"]'>
+      <div class="image-slider">
+        <button class="arrow left" onclick="prevSlide(event, 'cap')">‹</button>
+        <div class="slider-track" id="slider-cap">
+          <img class="slider-image" src="TIMELESS/alpha caps/black cap.jpg" alt="Black">
+          <img class="slider-image" src="TIMELESS/alpha caps/pinkcap.jpg" alt="Pink">
+          <img class="slider-image" src="TIMELESS/alpha caps/green caps.jpg" alt="Green">
+          <img class="slider-image" src="TIMELESS/alpha caps/purple cap.jpg" alt="Purple">
+          <img class="slider-image" src="TIMELESS/alpha caps/blue cap.jpg" alt="Blue">
+          <img class="slider-image" src="TIMELESS/alpha caps/red cap.jpg" alt="Red">
+        </div>
+        <button class="arrow right" onclick="nextSlide(event, 'cap')">›</button>
+      </div>
+      <div class="product-name">Snapback Cap</div>
+      <div class="price">₦20,000</div>
     </div>
 
-    <!-- Product: Black Leather Vest -->
-    <div class="product" data-name="Black Leather Vest" data-price="400000" data-id="vest-leather-black" onclick="openProductDetail('vest-leather-black', 'Black Leather Vest', 400000, 'https://www.zttw.store/cdn/shop/files/zttw_17_461f8102-3c5a-4067-83cd-275b35dba60b.jpg?v=1741958033&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_17_461f8102-3c5a-4067-83cd-275b35dba60b.jpg?v=1741958033&width=3000" alt="Black Leather Vest" />
-      <div class="product-name">Black Leather Vest</div>
-      <div class="price">₦400,000.00</div>
-    </div>
-
-    <!-- Product: Black Pattern-Cut Shorts -->
-    <div class="product" data-name="Black Pattern-Cut Shorts" data-price="240000" data-id="pattern-shorts-black" onclick="openProductDetail('pattern-shorts-black', 'Black Pattern-Cut Shorts', 240000, 'https://www.zttw.store/cdn/shop/files/zttw_53_8e95ed70-7bd8-46eb-b431-47c1067f51a3.jpg?v=1741957993&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_53_8e95ed70-7bd8-46eb-b431-47c1067f51a3.jpg?v=1741957993&width=3000" alt="Black Pattern-Cut Shorts" />
-      <div class="product-name">Black Pattern-Cut Shorts</div>
-      <div class="price">₦240,000.00</div>
-    </div>
-
-    <!-- Product: Black Pattern-Cut Top -->
-    <div class="product" data-name="Black Pattern-Cut Top" data-price="320000" data-id="pattern-top-black" onclick="openProductDetail('pattern-top-black', 'Black Pattern-Cut Top', 320000, 'https://www.zttw.store/cdn/shop/files/zttw_51_10e04cd8-4da8-459c-a614-58272cddb652.jpg?v=1741958010&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_51_10e04cd8-4da8-459c-a614-58272cddb652.jpg?v=1741958010&width=3000" alt="Black Pattern-Cut Top" />
-      <div class="product-name">Black Pattern-Cut Top</div>
-      <div class="price">₦320,000.00</div>
-    </div>
-
-    <!-- Product: Black Thunderbolt Set -->
-    <div class="product" data-name="Black Thunderbolt Set" data-price="1600000" data-id="thunderbolt-set-black" onclick="openProductDetail('thunderbolt-set-black', 'Black Thunderbolt Set', 1600000, 'https://www.zttw.store/cdn/shop/files/zttw_37_75920b4d-fec0-46a9-b818-c91e3c4dc6b0.jpg?v=1741958011&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_37_75920b4d-fec0-46a9-b818-c91e3c4dc6b0.jpg?v=1741958011&width=3000" alt="Black Thunderbolt Set" />
-      <div class="product-name">Black Thunderbolt Set</div>
-      <div class="price">₦1,600,000.00</div>
-    </div>
-
-    <!-- Product: Brown Camo Hat -->
-    <div class="product" data-name="Brown Camo Hat" data-price="160000" data-id="hat-camo-brown" onclick="openProductDetail('hat-camo-brown', 'Brown Camo Hat', 160000, 'https://www.zttw.store/cdn/shop/files/zttw_43_275b8d09-a62a-4b88-9d4c-7ed751582ec2.jpg?v=1741958006&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_43_275b8d09-a62a-4b88-9d4c-7ed751582ec2.jpg?v=1741958006&width=3000" alt="Brown Camo Hat" />
-      <div class="product-name">Brown Camo Hat</div>
-      <div class="price">₦160,000.00</div>
-    </div>
-
-    <!-- Product: Brown Pattern-Cut Shorts -->
-    <div class="product" data-name="Brown Pattern-Cut Shorts" data-price="240000" data-id="pattern-shorts-brown" onclick="openProductDetail('pattern-shorts-brown', 'Brown Pattern-Cut Shorts', 240000, 'https://www.zttw.store/cdn/shop/files/zttw_49_fd0c8527-624e-40b1-a5d5-429a6f667a58.jpg?v=1741958007&width=3000')">
-      <img src="https://www.zttw.store/cdn/shop/files/zttw_49_fd0c8527-624e-40b1-a5d5-429a6f667a58.jpg?v=1741958007&width=3000" alt="Brown Pattern-Cut Shorts" />
-      <div class="product-name">Brown Pattern-Cut Shorts</div>
-      <div class="price">₦240,000.00</div>
-    </div>
   </div>
 
-  <!-- Modal for product details -->
+  <!-- Modal -->
   <div id="productModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
@@ -446,7 +527,8 @@
         <div class="product-info">
           <h1 id="modalName"></h1>
           <div class="product-price" id="modalPrice"></div>
-          
+
+          <label><strong>Size:</strong></label>
           <div class="size-options">
             <div class="size-option selected" data-size="S">S</div>
             <div class="size-option" data-size="M">M</div>
@@ -454,6 +536,11 @@
             <div class="size-option" data-size="XL">XL</div>
             <div class="size-option" data-size="2XL">2XL</div>
             <div class="size-option" data-size="3XL">3XL</div>
+          </div>
+
+          <label><strong>Color:</strong></label>
+          <div class="color-options" id="colorOptions">
+            <!-- Filled dynamically -->
           </div>
           
           <div class="quantity-control">
@@ -490,225 +577,273 @@
       </a>
     </div>
   </footer>
-  
+
   <script>
-  // ===== CART MANAGEMENT =====
-  // Load cart from localStorage or initialize empty
-  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // ===== CART MANAGEMENT =====
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  // Update the cart badge count (e.g., 🛍️ 2)
-  function updateCartCount() {
-    const cartCountEl = document.getElementById('cart-count');
-    if (!cartCountEl) return;
+    function updateCartCount() {
+      const cartCountEl = document.getElementById('cart-count');
+      if (!cartCountEl) return;
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      cartCountEl.textContent = totalItems > 0 ? totalItems : '';
+    }
 
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    cartCountEl.textContent = totalItems;
-  }
-
-  // Run on page load
-  document.addEventListener('DOMContentLoaded', () => {
-    updateCartCount(); // Set initial count when page loads
-  });
-
-  // ===== SEARCH FUNCTIONALITY =====
-  function searchProducts() {
-    const query = document.getElementById('searchInput').value.trim().toLowerCase();
-    const products = document.querySelectorAll('.product');
-
-    products.forEach(product => {
-      const name = product.getAttribute('data-name').toLowerCase();
-      product.style.display = name.includes(query) ? 'block' : 'none';
+    document.addEventListener('DOMContentLoaded', () => {
+      updateCartCount();
     });
-  }
 
-  // Reset all products (show all)
-  function resetAllProducts() {
-    document.querySelectorAll('.product').forEach(p => {
-      p.style.display = 'block';
-    });
-  }
-
-  // Toggle search bar visibility
-  function toggleSearch() {
-    const container = document.getElementById('searchContainer');
-    const input = document.getElementById('searchInput');
-    
-    if (!container || container.style.display === 'none' || container.style.display === '') {
-      if (container) container.style.display = 'block';
-      if (input) {
-        input.focus();
+    // ===== SEARCH FUNCTIONALITY =====
+    function toggleSearch() {
+      const container = document.getElementById('searchContainer');
+      const input = document.getElementById('searchInput');
+      
+      if (!container || container.style.display === 'none' || container.style.display === '') {
+        container.style.display = 'block';
+        if (input) {
+          input.focus();
+          input.value = '';
+          searchProducts();
+        }
+      } else {
+        container.style.display = 'none';
         input.value = '';
-        searchProducts();
+        resetAllProducts();
       }
-    } else {
-      if (container) container.style.display = 'none';
-      if (input) input.value = '';
-      resetAllProducts();
     }
-  }
 
-  // Open product detail modal
-  function openProductDetail(id, name, price, image) {
-    // Set modal content
-    document.getElementById('modalName').textContent = name;
-    document.getElementById('modalPrice').textContent = `₦${price.toLocaleString()}`;
-    document.getElementById('modalImage').src = image;
-    
-    // Store product info for later use
-    window.currentProduct = {
-      id,
-      name,
-      price,
-      image
-    };
-    
-    // Clear any previously selected size
-    document.querySelectorAll('.size-option').forEach(btn => {
-      btn.classList.remove('selected');
-    });
-    
-    // Select default size (S)
-    document.querySelector('.size-option[data-size="S"]').classList.add('selected');
-    
-    // Set quantity to 1
-    document.getElementById('quantity').value = 1;
-    
-    // Show modal
-    document.getElementById('productModal').style.display = 'block';
-  }
+    function searchProducts() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const products = document.querySelectorAll('.product');
 
-  // Close modal
-  function closeProductModal() {
-    document.getElementById('productModal').style.display = 'none';
-  }
-
-  // Handle size selection
-  document.querySelectorAll('.size-option').forEach(btn => {
-    btn.addEventListener('click', function() {
-      document.querySelectorAll('.size-option').forEach(b => {
-        b.classList.remove('selected');
-      });
-      this.classList.add('selected');
-    });
-  });
-
-  // Quantity controls
-  function increaseQuantity() {
-    const input = document.getElementById('quantity');
-    input.value = parseInt(input.value) + 1;
-  }
-
-  function decreaseQuantity() {
-    const input = document.getElementById('quantity');
-    if (parseInt(input.value) > 1) {
-      input.value = parseInt(input.value) - 1;
-    }
-  }
-
-  // Add to cart from modal
-  function addToCartFromModal() {
-    const name = document.getElementById('modalName').textContent;
-    const price = parseFloat(document.getElementById('modalPrice').textContent.replace('₦', '').replace(',', ''));
-    const image = document.getElementById('modalImage').src;
-    const size = document.querySelector('.size-option.selected').getAttribute('data-size');
-    const quantity = parseInt(document.getElementById('quantity').value);
-    
-    // Add item to cart with size and quantity
-    const existing = cart.find(item => item.id === window.currentProduct.id);
-    
-    if (existing) {
-      existing.quantity += quantity;
-    } else {
-      cart.push({
-        id: window.currentProduct.id,
-        name: `${name} (${size})`,
-        price,
-        image,
-        quantity
+      products.forEach(product => {
+        const name = product.querySelector('.product-name').textContent.toLowerCase();
+        product.style.display = name.includes(query) ? 'block' : 'none';
       });
     }
 
-    // Save back to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Update the cart counter in the header
-    updateCartCount();
-
-    // Close modal
-    closeProductModal();
-    
-    // Show confirmation
-    alert(`${name} (${size}) added to cart!`);
-  }
-
-  // Buy now from modal
-  function buyNowFromModal() {
-    const name = document.getElementById('modalName').textContent;
-    const price = parseFloat(document.getElementById('modalPrice').textContent.replace('₦', '').replace(',', ''));
-    const image = document.getElementById('modalImage').src;
-    const size = document.querySelector('.size-option.selected').getAttribute('data-size');
-    const quantity = parseInt(document.getElementById('quantity').value);
-    
-    // Add item to cart with size and quantity
-    const existing = cart.find(item => item.id === window.currentProduct.id);
-    
-    if (existing) {
-      existing.quantity += quantity;
-    } else {
-      cart.push({
-        id: window.currentProduct.id,
-        name: `${name} (${size})`,
-        price,
-        image,
-        quantity
+    function resetAllProducts() {
+      document.querySelectorAll('.product').forEach(p => {
+        p.style.display = 'block';
       });
     }
 
-    // Save back to localStorage
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    // Update the cart counter in the header
-    updateCartCount();
-
-    // Close modal
-    closeProductModal();
-    
-    // Redirect to checkout
-    window.location.href = 'checkout.html';
-  }
-
-  // Close modal when clicking outside of it
-  window.onclick = function(event) {
-    const modal = document.getElementById('productModal');
-    if (event.target === modal) {
-      modal.style.display = 'none';
-    }
-  }
-
-  // Close modal when clicking the X button
-  document.querySelector('.close').onclick = function() {
-    closeProductModal();
-  }
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', function(e) {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const menuToggle = document.querySelector('.menu-toggle');
-    
-    if (mobileMenu && !mobileMenu.contains(e.target) && e.target !== menuToggle && !menuToggle?.contains(e.target)) {
-      mobileMenu.classList.remove('active');
-    }
-  });
     function handleSearchEnter(event) {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      const query = document.getElementById("searchInput").value.trim();
-      if (query) {
-        window.location.href = `all-products.html?q=${encodeURIComponent(query)}`;
+      if (event.key === "Enter") {
+        event.preventDefault();
+        const query = document.getElementById("searchInput").value.trim();
+        if (query) {
+          window.location.href = `all-products.html?q=${encodeURIComponent(query)}`;
+        }
       }
     }
-  }
 
+    // ===== SLIDER LOGIC =====
+    const sliders = {};
+    ['pulse', 'gold', 'shorts', 'm-tank', 'f-crop', 'cap'].forEach(id => {
+      sliders[id] = 0;
+    });
+
+    function nextSlide(e, productId) {
+      e.stopPropagation();
+      const track = document.getElementById(`slider-${productId}`);
+      const total = track.children.length;
+      sliders[productId] = (sliders[productId] + 1) % total;
+      track.style.transform = `translateX(-${sliders[productId] * 100}%)`;
+    }
+
+    function prevSlide(e, productId) {
+      e.stopPropagation();
+      const track = document.getElementById(`slider-${productId}`);
+      const total = track.children.length;
+      sliders[productId] = (sliders[productId] - 1 + total) % total;
+      track.style.transform = `translateX(-${sliders[productId] * 100}%)`;
+    }
+
+    // ===== COLOR HEX MAP =====
+    const colorHexMap = {
+      'Black': '#000000',
+      'White': '#FFFFFF',
+      'Orange': '#FFA500',
+      'Green': '#008000',
+      'Blue': '#0000FF',
+      'Pink': '#FFC0CB',
+      'Purple': '#800080',
+      'Red': '#FF0000'
+    };
+
+    // ===== GET IMAGE BY COLOR – FIXED PATHS =====
+    function getImageByColor(productId, color) {
+      const map = {
+        'pulse': {
+          'White': 'TIMELESS/PULSEOFSOUNDWHITE.jpg',
+          'Black': 'TIMELESS/PULSEOFSOUNDBLACK.jpg'
+        },
+        'gold': {
+          'White': 'TIMELESS/gold standard/white gold standard.jpg',
+          'Black': 'TIMELESS/gold standard/black gold standard.jpg'
+        },
+        'shorts': {
+          'White': 'TIMELESS/white short.jpg',
+          'Black': 'TIMELESS/black short.jpg',
+          'Red': 'TIMELESS/red short.jpg',
+          'Blue': 'TIMELESS/blue short.jpg'
+        },
+        'm-tank': {
+          'Black': 'TIMELESS/tank top/black tank top.jpg',
+          'White': 'TIMELESS/tank top/white tank top.jpg',
+          'Orange': 'TIMELESS/tank top/orange tank top.jpg',
+          'Green': 'TIMELESS/tank top/green tank top.jpg'
+        },
+        'f-crop': {
+          'Blue': 'TIMELESS/crop tops/blue crop top .jpg',
+          'Pink': 'TIMELESS/crop tops/pink crop top.jpg',
+          'White': 'TIMELESS/crop tops/white crop top .jpg',
+          'Black': 'TIMELESS/crop tops/black crop top.jpg'
+        },
+        'cap': {
+          'Black': 'TIMELESS/alpha caps/black cap.jpg',
+          'Pink': 'TIMELESS/alpha caps/pinkcap.jpg',
+          'Green': 'TIMELESS/alpha caps/green caps.jpg',
+          'Purple': 'TIMELESS/alpha caps/purple cap.jpg',
+          'Blue': 'TIMELESS/alpha caps/blue cap.jpg',
+          'Red': 'TIMELESS/alpha caps/red cap.jpg'
+        }
+      };
+      return map[productId]?.[color] || 'TIMELESS/default.jpg'; // fallback
+    }
+
+    // ===== OPEN MODAL WITH DYNAMIC COLORS =====
+    function openProduct(productId, name, price, defaultImage, availableColors) {
+      document.getElementById('modalName').textContent = name;
+      document.getElementById('modalPrice').textContent = `₦${price.toLocaleString()}`;
+      document.getElementById('modalImage').src = defaultImage;
+
+      // Clear and rebuild color options
+      const colorOptionsDiv = document.getElementById('colorOptions');
+      colorOptionsDiv.innerHTML = '';
+
+      availableColors.forEach(color => {
+        const button = document.createElement('div');
+        button.className = 'color-option';
+        button.style.backgroundColor = colorHexMap[color];
+        button.setAttribute('data-color', color);
+        const imgPath = getImageByColor(productId, color);
+        button.setAttribute('data-img', imgPath);
+
+        if (color === 'Black' || color === 'White' || availableColors.indexOf(color) === 0) {
+          button.classList.add('selected');
+        }
+        colorOptionsDiv.appendChild(button);
+      });
+
+      // Reset size selection
+      document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
+      document.querySelector('.size-option[data-size="S"]').classList.add('selected');
+      document.getElementById('quantity').value = 1;
+
+      // Store current product
+      window.currentProduct = { id: productId, name, price };
+
+      // Show modal
+      document.getElementById('productModal').style.display = 'block';
+    }
+
+    // Color Selection
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('color-option')) {
+        document.querySelectorAll('.color-option').forEach(b => b.classList.remove('selected'));
+        e.target.classList.add('selected');
+        const imgSrc = e.target.getAttribute('data-img');
+        if (imgSrc) {
+          document.getElementById('modalImage').src = imgSrc;
+        }
+      }
+    });
+
+    // Size Selection
+    document.querySelectorAll('.size-option').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+
+    // Quantity
+    function increaseQuantity() {
+      const input = document.getElementById('quantity');
+      input.value = parseInt(input.value) + 1;
+    }
+
+    function decreaseQuantity() {
+      const input = document.getElementById('quantity');
+      if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+      }
+    }
+
+    // Add to Cart
+    function addToCartFromModal() {
+      const name = document.getElementById('modalName').textContent;
+      const priceStr = document.getElementById('modalPrice').textContent.replace('₦', '').replace(',', '');
+      const price = parseFloat(priceStr);
+      const image = document.getElementById('modalImage').src;
+      const size = document.querySelector('.size-option.selected').getAttribute('data-size');
+      const colorOption = document.querySelector('.color-option.selected');
+      const color = colorOption.getAttribute('data-color');
+      const quantity = parseInt(document.getElementById('quantity').value);
+
+      const displayName = `${name} (${color}, ${size})`;
+
+      const existing = cart.find(item => item.name === displayName);
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        cart.push({
+          id: window.currentProduct.id,
+          name: displayName,
+          price,
+          image,
+          size,
+          color,
+          quantity
+        });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      closeProductModal();
+      alert(`${displayName} added to cart!`);
+    }
+
+    function buyNowFromModal() {
+      addToCartFromModal();
+      setTimeout(() => window.location.href = 'checkout.html', 500);
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModal').style.display = 'none';
+    }
+
+    document.querySelector('.close').onclick = closeProductModal;
+    window.onclick = function(e) {
+      if (e.target === document.getElementById('productModal')) {
+        closeProductModal();
+      }
+    };
+
+    // ✅ Attach click events via data attributes
+    document.querySelectorAll('.product').forEach(product => {
+      product.addEventListener('click', function () {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseInt(this.dataset.price);
+        const defaultImg = this.dataset.defaultImg;
+        const colors = JSON.parse(this.dataset.colors);
+
+        openProduct(id, name, price, defaultImg, colors);
+      });
+    });
   </script>
 </body>
 </html>
