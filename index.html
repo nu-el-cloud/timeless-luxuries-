@@ -201,118 +201,182 @@
       font-weight: 500;
     }
 
-    /* Color Options */
+    /* Color Options (Swatches) */
     .color-options {
       display: flex;
       justify-content: center;
       gap: 8px;
-      margin: 10px 0 5px;
+      margin: 8px 0 0;
     }
 
     .color-option {
-      width: 20px;
-      height: 20px;
+      width: 16px;
+      height: 16px;
       border-radius: 50%;
       cursor: pointer;
-      border: 2px solid #ddd;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      border: 1.5px solid #ddd;
+      transition: transform 0.2s ease;
     }
 
     .color-option:hover {
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
 
     .color-option.selected {
-      border: 2px solid #000;
+      border: 1.5px solid #000;
     }
 
     /* Modal */
     .modal {
       display: none;
       position: fixed;
-      top: 0;
+      z-index: 1000;
       left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
+      background-color: rgba(0,0,0,0.7);
     }
 
     .modal-content {
-      background: white;
-      border-radius: 8px;
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
       max-width: 800px;
-      width: 90%;
-      max-height: 90vh;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
+      border-radius: 8px;
+      position: relative;
     }
 
     .close {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #000;
+      color: #aaa;
+      float: right;
+      font-size: 28px;
       font-weight: bold;
+      cursor: pointer;
+      position: absolute;
+      top: 15px;
+      right: 20px;
     }
 
-    .size-btn {
-      padding: 8px 12px;
+    .product-detail {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .product-image {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .product-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .product-price {
+      font-size: 18px;
+      color: #000;
+      font-weight: 500;
+      margin: 10px 0;
+    }
+
+    .size-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .size-option {
+      padding: 5px 10px;
       border: 1px solid #ddd;
-      background: #fff;
       cursor: pointer;
       border-radius: 4px;
-      font-size: 14px;
-      transition: all 0.2s;
     }
 
-    .size-btn.selected {
+    .size-option.selected {
       background: #000;
       color: white;
-      border-color: #000;
+      border: 1px solid #000;
+    }
+
+    .color-options-modal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .color-option-modal {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #ddd;
+    }
+
+    .color-option-modal.selected {
+      border: 2px solid #000;
+      transform: scale(1.1);
+    }
+
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
     }
 
     .quantity-btn {
       width: 30px;
       height: 30px;
       background: #eee;
-      border: 1px solid #ddd;
-      font-size: 14px;
+      border: none;
       cursor: pointer;
-      border-radius: 4px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .quantity-input {
       width: 50px;
       text-align: center;
-      border: 1px solid #ddd;
       padding: 5px;
-      font-size: 14px;
+      border: 1px solid #ddd;
     }
 
-    .btn-add-to-cart, .btn-buy-now {
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .button {
       padding: 10px 20px;
       border: none;
-      font-size: 14px;
-      cursor: pointer;
       border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
       flex: 1;
     }
 
-    .btn-add-to-cart {
+    .add-to-cart-btn {
       background: #000;
       color: white;
     }
 
-    .btn-buy-now {
-      background: white;
-      color: #000;
-      border: 1px solid #000;
+    .buy-now-btn {
+      background: #000;
+      color: white;
+    }
+
+    .button:hover {
+      background: #333;
     }
 
     /* CTA Section */
@@ -578,7 +642,7 @@
          data-price="25000"
          data-default-img="TIMELESS/tank top/black tank top.jpg"
          data-colors='["Black", "White", "Orange", "Green"]'>
-      <div class="image-slider" id="slider-m-tank-container">
+      <div class="image-slider">
         <button class="arrow left" onclick="prevSlide(event, 'm-tank')">‹</button>
         <div class="slider-track" id="slider-m-tank">
           <img class="slider-image" src="TIMELESS/tank top/black tank top.jpg" alt="Black">
@@ -590,12 +654,7 @@
       </div>
       <div class="product-name">Tank Top</div>
       <div class="price">₦25,000</div>
-      <div class="color-options" id="colors-m-tank">
-        <div class="color-option selected" data-color="Black" style="background:#000" onclick="changeProductColor('m-tank', 'Black')"></div>
-        <div class="color-option" data-color="White" style="background:#FFF;border:2px solid #000" onclick="changeProductColor('m-tank', 'White')"></div>
-        <div class="color-option" data-color="Orange" style="background:#FFA500" onclick="changeProductColor('m-tank', 'Orange')"></div>
-        <div class="color-option" data-color="Green" style="background:#008000" onclick="changeProductColor('m-tank', 'Green')"></div>
-      </div>
+      
     </div>
 
     <!-- Gold Standard Shirt -->
@@ -605,7 +664,7 @@
          data-price="50000"
          data-default-img="TIMELESS/gold standard/white gold standard.jpg"
          data-colors='["White", "Black"]'>
-      <div class="image-slider" id="slider-gold-container">
+      <div class="image-slider">
         <button class="arrow left" onclick="prevSlide(event, 'gold')">‹</button>
         <div class="slider-track" id="slider-gold">
           <img class="slider-image" src="TIMELESS/gold standard/white gold standard.jpg" alt="White">
@@ -615,10 +674,7 @@
       </div>
       <div class="product-name">Gold Standard Shirt</div>
       <div class="price">₦50,000</div>
-      <div class="color-options" id="colors-gold">
-        <div class="color-option selected" data-color="White" style="background:#FFF;border:2px solid #000" onclick="changeProductColor('gold', 'White')"></div>
-        <div class="color-option" data-color="Black" style="background:#000" onclick="changeProductColor('gold', 'Black')"></div>
-      </div>
+      
     </div>
 
     <!-- Snapback Cap -->
@@ -628,13 +684,13 @@
          data-price="20000"
          data-default-img="TIMELESS/alpha caps/black cap.jpg"
          data-colors='["Black", "Pink", "Green", "Purple", "Blue", "Red"]'>
-      <div class="image-slider" id="slider-cap-container">
+      <div class="image-slider">
         <button class="arrow left" onclick="prevSlide(event, 'cap')">‹</button>
         <div class="slider-track" id="slider-cap">
           <img class="slider-image" src="TIMELESS/alpha caps/black cap.jpg" alt="Black">
-          <img class="slider-image" src="TIMELESS/alpha caps/pinkcap.jpg" alt="Pink">
+          <img class="slider-image" src="TIMELESS/alpha caps/pinkcap .jpg" alt="Pink">
           <img class="slider-image" src="TIMELESS/alpha caps/green caps.jpg" alt="Green">
-          <img class="slider-image" src="TIMELESS/alpha caps/purple cap.jpg" alt="Purple">
+          <img class="slider-image" src="TIMELESS/alpha caps/purple cap .jpg" alt="Purple">
           <img class="slider-image" src="TIMELESS/alpha caps/red cap.jpg" alt="Red">
           <img class="slider-image" src="TIMELESS/alpha caps/blue cap.jpg" alt="Blue">
         </div>
@@ -642,14 +698,7 @@
       </div>
       <div class="product-name">Snapback Cap</div>
       <div class="price">₦20,000</div>
-      <div class="color-options" id="colors-cap">
-        <div class="color-option selected" data-color="Black" style="background:#000" onclick="changeProductColor('cap', 'Black')"></div>
-        <div class="color-option" data-color="Pink" style="background:#FFC0CB" onclick="changeProductColor('cap', 'Pink')"></div>
-        <div class="color-option" data-color="Green" style="background:#008000" onclick="changeProductColor('cap', 'Green')"></div>
-        <div class="color-option" data-color="Purple" style="background:#800080" onclick="changeProductColor('cap', 'Purple')"></div>
-        <div class="color-option" data-color="Blue" style="background:#0000FF" onclick="changeProductColor('cap', 'Blue')"></div>
-        <div class="color-option" data-color="Red" style="background:#FF0000" onclick="changeProductColor('cap', 'Red')"></div>
-      </div>
+      
     </div>
 
   </div>
@@ -670,6 +719,9 @@
       <button type="submit">SUBSCRIBE →</button>
     </form>
   </section>
+
+  
+
 
   <!-- Footer -->
   <footer>
@@ -694,38 +746,42 @@
   <div id="productModal" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
-      <div style="display: flex; flex: 1; overflow: hidden;">
-        <div style="flex: 1; display: flex; justify-content: center; align-items: center; padding: 20px; background: #f9f9f9;">
-          <img id="modalImage" src="" alt="Product" style="max-width: 100%; max-height: 500px; object-fit: contain; border-radius: 8px;">
+      <div class="product-detail">
+        <div class="product-image">
+          <img id="modalImage" src="" alt="Product Image" style="width: 100%;">
         </div>
-        <div style="flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: flex-start;">
-          <h1 id="modalName" style="font-size: 24px; margin-bottom: 10px; color: #000;"></h1>
-          <div id="modalPrice" style="font-size: 18px; font-weight: 500; color: #000; margin-bottom: 20px;"></div>
+        <div class="product-info">
+          <h1 id="modalName"></h1>
+          <div class="product-price" id="modalPrice"></div>
 
-          <div style="margin-bottom: 20px;">
-            <strong style="display: block; margin-bottom: 8px; font-size: 14px; color: #333;">Size</strong>
-            <div style="display: flex; gap: 8px;">
-              <button class="size-btn" data-size="S">S</button>
-              <button class="size-btn" data-size="M">M</button>
-              <button class="size-btn" data-size="L">L</button>
-              <button class="size-btn" data-size="XL">XL</button>
-              <button class="size-btn" data-size="2XL">2XL</button>
-              <button class="size-btn" data-size="3XL">3XL</button>
-            </div>
+          <label><strong>Size:</strong></label>
+          <div class="size-options">
+            <div class="size-option selected" data-size="S">S</div>
+            <div class="size-option" data-size="M">M</div>
+            <div class="size-option" data-size="L">L</div>
+            <div class="size-option" data-size="XL">XL</div>
+            <div class="size-option" data-size="2XL">2XL</div>
+            <div class="size-option" data-size="3XL">3XL</div>
           </div>
 
-          <div style="margin-bottom: 20px;">
-            <strong style="display: block; margin-bottom: 8px; font-size: 14px; color: #333;">Quantity</strong>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
-              <input type="number" class="quantity-input" id="quantity" value="1" min="1">
-              <button class="quantity-btn" onclick="increaseQuantity()">+</button>
-            </div>
+          <label><strong>Color:</strong></label>
+          <div class="color-options-modal" id="colorOptions">
+            <!-- Filled dynamically -->
           </div>
-
-          <div style="display: flex; gap: 10px; margin-top: auto;">
-            <button class="btn-add-to-cart" onclick="addToCartFromModal()">Add to Cart</button>
-            <button class="btn-buy-now" onclick="buyNowFromModal()">Buy it now →</button>
+          
+          <div class="quantity-control">
+            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+            <input type="number" class="quantity-input" id="quantity" value="1" min="1">
+            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+          </div>
+          
+          <div class="button-group">
+            <button class="button add-to-cart-btn" onclick="addToCartFromModal()">
+              Add to Cart
+            </button>
+            <button class="button buy-now-btn" onclick="buyNowFromModal()">
+              Buy it now →
+            </button>
           </div>
         </div>
       </div>
@@ -733,24 +789,8 @@
   </div>
 
   <script>
-    // === CART & MODAL STATE ===
+    // === CART MANAGEMENT ===
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let currentProduct = null;
-
-    // Slider positions for product image carousels
-    const sliders = { 'm-tank': 0, 'gold': 0, 'cap': 0 };
-
-    // Color HEX Map
-    const colorHexMap = {
-      'Black': '#000000',
-      'White': '#FFFFFF',
-      'Orange': '#FFA500',
-      'Green': '#008000',
-      'Blue': '#0000FF',
-      'Pink': '#FFC0CB',
-      'Purple': '#800080',
-      'Red': '#FF0000'
-    };
 
     function updateCartCount() {
       const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -764,12 +804,172 @@
       updateCartCount();
     });
 
-    // === SLIDER CONTROLS ===
+    // ===== COLOR HEX MAP =====
+    const colorHexMap = {
+      'Black': '#000000',
+      'White': '#FFFFFF',
+      'Orange': '#FFA500',
+      'Green': '#008000',
+      'Blue': '#0000FF',
+      'Pink': '#FFC0CB',
+      'Purple': '#800080',
+      'Red': '#FF0000'
+    };
+
+    // ===== GET IMAGE BY COLOR =====
+    function getImageByColor(productId, color) {
+      const map = {
+        'm-tank': {
+          'Black': 'TIMELESS/tank top/black tank top.jpg',
+          'White': 'TIMELESS/tank top/white tank top.jpg',
+          'Orange': 'TIMELESS/tank top/orange tank top.jpg',
+          'Green': 'TIMELESS/tank top/green tank top.jpg'
+        },
+        'gold': {
+          'White': 'TIMELESS/gold standard/white gold standard.jpg',
+          'Black': 'TIMELESS/gold standard/black gold standard.jpg'
+        },
+        'cap': {
+          'Black': 'TIMELESS/alpha caps/black cap.jpg',
+          'Pink': 'TIMELESS/alpha caps/pinkcap .jpg',
+          'Green': 'TIMELESS/alpha caps/green caps.jpg',
+          'Purple': 'TIMELESS/alpha caps/purple cap .jpg',
+          'Blue': 'TIMELESS/alpha caps/blue cap.jpg',
+          'Red': 'TIMELESS/alpha caps/red cap.jpg'
+        }
+      };
+      return map[productId]?.[color] || '';
+    }
+
+    // ===== OPEN MODAL WITH DYNAMIC COLORS =====
+    function openProduct(productId, name, price, defaultImage, availableColors) {
+      document.getElementById('modalName').textContent = name;
+      document.getElementById('modalPrice').textContent = `₦${price.toLocaleString()}`;
+      document.getElementById('modalImage').src = defaultImage;
+
+      // Clear and rebuild color options
+      const colorOptionsDiv = document.getElementById('colorOptions');
+      colorOptionsDiv.innerHTML = '';
+
+      availableColors.forEach(color => {
+        const button = document.createElement('div');
+        button.className = 'color-option-modal';
+        button.style.backgroundColor = colorHexMap[color];
+        button.setAttribute('data-color', color);
+        const imgPath = getImageByColor(productId, color);
+        button.setAttribute('data-img', imgPath);
+
+        if (color === 'Black' || color === 'White' || availableColors.indexOf(color) === 0) {
+          button.classList.add('selected');
+        }
+        colorOptionsDiv.appendChild(button);
+      });
+
+      // Reset size selection
+      document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
+      document.querySelector('.size-option[data-size="S"]').classList.add('selected');
+      document.getElementById('quantity').value = 1;
+
+      // Store current product
+      window.currentProduct = { id: productId, name, price };
+
+      // Show modal
+      document.getElementById('productModal').style.display = 'block';
+    }
+
+    // Color Selection
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('color-option-modal')) {
+        document.querySelectorAll('.color-option-modal').forEach(b => b.classList.remove('selected'));
+        e.target.classList.add('selected');
+        const imgSrc = e.target.getAttribute('data-img');
+        if (imgSrc) {
+          document.getElementById('modalImage').src = imgSrc;
+        }
+      }
+    });
+
+    // Size Selection
+    document.querySelectorAll('.size-option').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
+        this.classList.add('selected');
+      });
+    });
+
+    // Quantity
+    function increaseQuantity() {
+      const input = document.getElementById('quantity');
+      input.value = parseInt(input.value) + 1;
+    }
+
+    function decreaseQuantity() {
+      const input = document.getElementById('quantity');
+      if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+      }
+    }
+
+    // Add to Cart
+    function addToCartFromModal() {
+      const name = document.getElementById('modalName').textContent;
+      const priceStr = document.getElementById('modalPrice').textContent.replace('₦', '').replace(',', '');
+      const price = parseFloat(priceStr);
+      const image = document.getElementById('modalImage').src;
+      const size = document.querySelector('.size-option.selected').getAttribute('data-size');
+      const colorOption = document.querySelector('.color-option-modal.selected');
+      const color = colorOption.getAttribute('data-color');
+      const quantity = parseInt(document.getElementById('quantity').value);
+
+      const displayName = `${name} (${color}, ${size})`;
+
+      const existing = cart.find(item => item.name === displayName);
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        cart.push({
+          id: window.currentProduct.id,
+          name: displayName,
+          price,
+          image,
+          size,
+          color,
+          quantity
+        });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      closeProductModal();
+      alert(`${displayName} added to cart!`);
+    }
+
+    function buyNowFromModal() {
+      addToCartFromModal();
+      setTimeout(() => window.location.href = 'checkout.html', 500);
+    }
+
+    function closeProductModal() {
+      document.getElementById('productModal').style.display = 'none';
+    }
+
+    document.querySelector('.close').onclick = closeProductModal;
+    window.onclick = function(e) {
+      if (e.target === document.getElementById('productModal')) {
+        closeProductModal();
+      }
+    };
+
+    // ===== SLIDER LOGIC =====
+    const sliders = {};
+    ['m-tank', 'gold', 'cap'].forEach(id => {
+      sliders[id] = 0;
+    });
+
     function nextSlide(e, productId) {
       e.stopPropagation();
       const track = document.getElementById(`slider-${productId}`);
-      const images = track.children;
-      const total = images.length;
+      const total = track.children.length;
       sliders[productId] = (sliders[productId] + 1) % total;
       track.style.transform = `translateX(-${sliders[productId] * 100}%)`;
     }
@@ -777,107 +977,9 @@
     function prevSlide(e, productId) {
       e.stopPropagation();
       const track = document.getElementById(`slider-${productId}`);
-      const images = track.children;
-      const total = images.length;
+      const total = track.children.length;
       sliders[productId] = (sliders[productId] - 1 + total) % total;
       track.style.transform = `translateX(-${sliders[productId] * 100}%)`;
-    }
-
-    // Change product image by color
-    function changeProductColor(productId, color) {
-      const track = document.getElementById(`slider-${productId}`);
-      const images = Array.from(track.children);
-      let index = -1;
-
-      images.forEach((img, i) => {
-        if (img.alt.toLowerCase() === color.toLowerCase()) {
-          index = i;
-        }
-      });
-
-      if (index !== -1) {
-        sliders[productId] = index;
-        track.style.transform = `translateX(-${index * 100}%)`;
-
-        const buttons = document.querySelectorAll(`#colors-${productId} .color-option`);
-        buttons.forEach(btn => btn.classList.remove('selected'));
-        document.querySelector(`#colors-${productId} [data-color="${color}"]`).classList.add('selected');
-      }
-    }
-
-    // === OPEN MODAL WITH PRODUCT DATA ===
-    function openProduct(id, name, price, imageSrc) {
-      document.getElementById('modalName').textContent = name;
-      document.getElementById('modalPrice').textContent = `₦${price.toLocaleString()}`;
-      document.getElementById('modalImage').src = imageSrc;
-
-      document.querySelectorAll('.size-btn').forEach(btn => {
-        btn.classList.remove('selected');
-        btn.onclick = function () {
-          document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
-          this.classList.add('selected');
-          currentProduct.size = this.getAttribute('data-size');
-        };
-      });
-
-      document.getElementById('quantity').value = 1;
-      currentProduct = { id, name, price, image: imageSrc, size: null, quantity: 1 };
-      document.getElementById('productModal').style.display = 'flex';
-    }
-
-    // Close modal
-    document.querySelector('.close').onclick = function () {
-      document.getElementById('productModal').style.display = 'none';
-    };
-
-    window.onclick = function (e) {
-      const modal = document.getElementById('productModal');
-      if (e.target === modal) {
-        modal.style.display = 'none';
-      }
-    };
-
-    // Quantity controls
-    function increaseQuantity() {
-      const input = document.getElementById('quantity');
-      input.value = parseInt(input.value) + 1;
-      currentProduct.quantity = parseInt(input.value);
-    }
-
-    function decreaseQuantity() {
-      const input = document.getElementById('quantity');
-      if (parseInt(input.value) > 1) {
-        input.value = parseInt(input.value) - 1;
-        currentProduct.quantity = parseInt(input.value);
-      }
-    }
-
-    // Add to Cart
-    function addToCartFromModal() {
-      if (!currentProduct || !currentProduct.size) {
-        alert("Please select a size.");
-        return;
-      }
-
-      const existing = cart.find(item => item.id === currentProduct.id && item.size === currentProduct.size);
-      if (existing) {
-        existing.quantity += currentProduct.quantity;
-      } else {
-        cart.push({ ...currentProduct });
-      }
-
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartCount();
-      alert(`${currentProduct.name} (${currentProduct.size}) added to cart!`);
-      document.getElementById('productModal').style.display = 'none';
-    }
-
-    // Buy Now
-    function buyNowFromModal() {
-      addToCartFromModal();
-      setTimeout(() => {
-        window.location.href = 'cart.html';
-      }, 500);
     }
 
     // === SEARCH FUNCTIONALITY ===
@@ -885,14 +987,34 @@
       const container = document.getElementById('searchContainer');
       const input = document.getElementById('searchInput');
       
-      if (!container.style.display || container.style.display === 'none') {
+      if (!container || container.style.display === 'none' || container.style.display === '') {
         container.style.display = 'block';
-        input.focus();
-        input.value = '';
+        if (input) {
+          input.focus();
+          input.value = '';
+          searchProducts();
+        }
       } else {
         container.style.display = 'none';
         input.value = '';
+        resetAllProducts();
       }
+    }
+
+    function searchProducts() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const products = document.querySelectorAll('.product');
+
+      products.forEach(product => {
+        const name = product.querySelector('.product-name').textContent.toLowerCase();
+        product.style.display = name.includes(query) ? 'block' : 'none';
+      });
+    }
+
+    function resetAllProducts() {
+      document.querySelectorAll('.product').forEach(p => {
+        p.style.display = 'block';
+      });
     }
 
     function handleSearchEnter(event) {
@@ -926,6 +1048,19 @@
       if (!subNav.contains(e.target) && e.target !== shopLink && !shopLink?.contains(e.target)) {
         subNav.classList.remove('active');
       }
+    });
+
+    // Attach click events using data attributes
+    document.querySelectorAll('.product').forEach(product => {
+      product.addEventListener('click', function () {
+        const id = this.dataset.id;
+        const name = this.dataset.name;
+        const price = parseInt(this.dataset.price);
+        const defaultImg = this.dataset.defaultImg;
+        const colors = JSON.parse(this.dataset.colors);
+
+        openProduct(id, name, price, defaultImg, colors);
+      });
     });
   </script>
 </body>
