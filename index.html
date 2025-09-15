@@ -87,7 +87,6 @@
       margin-right: auto;
       padding: 0 20px;
       background: #f9f9f9;
-      padding: 15px 20px;
       border-top: 1px solid #eee;
     }
 
@@ -371,7 +370,7 @@
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <ul>
-      <li><a href="#" onclick="toggleSubNavMobile()">Shop</a></li>
+      <li><a href="#" onclick="toggleSubNavMobile(event)">Shop</a></li>
       <li><a href="all-products.html">Products</a></li>
       <li><a href="lookbook.html">Lookbook</a></li>
       <li><a href="about.html">About</a></li>
@@ -379,12 +378,12 @@
   </div>
 
   <!-- Sub-nav -->
-<div class="sub-nav" id="subNav">
-  <a href="all-products.html?category=tops">Tops</a>
-  <a href="all-products.html?category=shirts">Shirts</a>
-  <a href="all-products.html?category=caps">Caps</a>
-  <a href="all-products.html?category=shorts">Shorts</a>
-</div>
+  <div class="sub-nav" id="subNav">
+    <a href="all-products.html?category=tops">Tops</a>
+    <a href="all-products.html?category=shirts">Shirts</a>
+    <a href="all-products.html?category=caps">Caps</a>
+    <a href="all-products.html?category=shorts">Shorts</a>
+  </div>
 
   <!-- Hero Video -->
   <div class="hero-container">
@@ -513,6 +512,8 @@
   <!-- Footer -->
   <footer>
     <h3>FOLLOW US</h3>
+    
+    <!-- Social Icons -->
     <div class="social-icons">
       <a href="https://www.instagram.com/timeless_since_1982" target="_blank" title="Instagram">
         <img src="TIMELESS/instagramlogo.webp" alt="Instagram" style="width: 24px; height: 24px; vertical-align: middle;">
@@ -524,9 +525,10 @@
         <img src="TIMELESS/tiktoklogo.webp" alt="TikTok" style="width: 24px; height: 24px; vertical-align: middle;">
       </a>
     </div>
-    <div class="social-stats">
-      <span>@t_m_l11 • 1,042 followers • 372 likes</span>
-    </div>
+
+    
+
+    
     <p style="font-size:14px; color:#777; margin-top:10px;">
       © 2025 TIMELESS. Crafted with care since 1982.
     </p>
@@ -534,13 +536,20 @@
 
   <script>
     // === CART MANAGEMENT ===
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let cart = [];
 
     function updateCartCount() {
-      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-      const cartCountEl = document.getElementById('cart-count');
-      if (cartCountEl) {
-        cartCountEl.textContent = totalItems > 0 ? ` (${totalItems})` : '';
+      if (typeof window === 'undefined') return;
+      try {
+        const saved = localStorage.getItem('cart');
+        const items = saved ? JSON.parse(saved) : [];
+        const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
+        const cartCountEl = document.getElementById('cart-count');
+        if (cartCountEl) {
+          cartCountEl.textContent = totalItems > 0 ? ` (${totalItems})` : '';
+        }
+      } catch (e) {
+        console.warn("Could not load cart:", e);
       }
     }
 
@@ -621,7 +630,8 @@
       document.getElementById('subNav').classList.toggle('active');
     }
 
-    function toggleSubNavMobile() {
+    function toggleSubNavMobile(e) {
+      e.preventDefault();
       document.getElementById('subNav').classList.toggle('active');
       document.getElementById('mobileMenu').classList.remove('active');
     }
@@ -630,12 +640,21 @@
       document.getElementById('mobileMenu').classList.toggle('active');
     }
 
+    // Close sub-nav when clicking outside
     document.addEventListener('click', (e) => {
       const subNav = document.getElementById('subNav');
       const shopLink = document.querySelector('.nav a[onclick]');
       if (!subNav.contains(e.target) && e.target !== shopLink && !shopLink?.contains(e.target)) {
         subNav.classList.remove('active');
       }
+    });
+
+    // Close mobile menu when sub-nav is clicked
+    document.querySelectorAll('.sub-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        document.getElementById('mobileMenu').classList.remove('active');
+        document.getElementById('subNav').classList.remove('active');
+      });
     });
 
     // === REDIRECT TO PRODUCT PAGE ON CLICK ===
@@ -648,13 +667,17 @@
         const colors = JSON.parse(this.dataset.colors);
 
         // Save full product data using exact image path
-        localStorage.setItem('currentProductView', JSON.stringify({
-          id,
-          name,
-          price,
-          defaultImg,
-          colors
-        }));
+        try {
+          localStorage.setItem('currentProductView', JSON.stringify({
+            id,
+            name,
+            price,
+            defaultImg,
+            colors
+          }));
+        } catch (e) {
+          console.error("Failed to save to localStorage", e);
+        }
 
         // Go to product page
         window.location.href = `product.html?id=${id}`;
