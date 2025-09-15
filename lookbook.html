@@ -84,6 +84,7 @@
       border-radius: 8px;
       height: 300px;
       cursor: pointer;
+      transition: all 0.3s ease;
     }
 
     .look-item img {
@@ -93,9 +94,221 @@
       transition: transform 0.3s ease;
     }
 
+    .look-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
     .look-item:hover img {
       transform: scale(1.05);
     }
+/* Modal/Lightbox Styles - Updated for Better Laptop Sizing */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  position: relative;
+  max-width: 70%;
+  max-height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  animation: zoomIn 0.3s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Close Button */
+.close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close:hover {
+  background: rgba(0,0,0,0.8);
+  transform: scale(1.1);
+}
+
+/* Navigation Arrows */
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  background: rgba(0,0,0,0.5);
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.nav-arrow:hover {
+  background: rgba(0,0,0,0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.prev {
+  left: 30px;
+}
+
+.next {
+  right: 30px;
+}
+
+/* Image Counter */
+.image-counter {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 16px;
+  background: rgba(0,0,0,0.5);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Desktop/Laptop Specific Sizing */
+@media (min-width: 1024px) {
+  .modal-content {
+    max-width: 60%;
+    max-height: 75%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .modal-content {
+    max-width: 55%;
+    max-height: 70%;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 769px) and (max-width: 1023px) {
+  .modal-content {
+    max-width: 75%;
+    max-height: 85%;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    max-width: 90%;
+    max-height: 90%;
+  }
+
+  .lookbook-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    padding: 0 15px;
+    margin: 30px auto;
+  }
+
+  .look-item {
+    height: 200px;
+  }
+
+  .close {
+    top: 15px;
+    right: 15px;
+    font-size: 25px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .nav-arrow {
+    font-size: 20px;
+    width: 45px;
+    height: 45px;
+  }
+
+  .prev {
+    left: 15px;
+  }
+
+  .next {
+    right: 15px;
+  }
+
+  .image-counter {
+    bottom: 20px;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    max-width: 95%;
+    max-height: 85%;
+  }
+
+  .lookbook-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .look-item {
+    height: 250px;
+  }
+}
 
     /* Join Community Section */
     .community-section {
@@ -236,57 +449,69 @@
     </nav>
     <div class="icons">
       <a href="#" title="Search">🔍</a>
-      <a href="cart.html" title="Cart">🛍️<span id="cart-count"></span></a>
+      <a href="cart.html" title="Cart">🛍️</a>
     </div>
   </header>
 
   <!-- Lookbook Grid -->
   <div class="lookbook-grid">
-
     <!-- Image 1 -->
-    <div class="look-item">
-      <img src="TIMELESS/lookbook/pic1.jpg" alt="">
+    <div class="look-item" onclick="openModal(0)">
+      <img src="TIMELESS/lookbook/pic1.jpg" alt="Lookbook Image 1">
     </div>
 
     <!-- Image 2 -->
-    <div class="look-item">
-      <img src="TIMELESS/lookbook/pic2.jpg" alt="Feet on Grass">
+    <div class="look-item" onclick="openModal(1)">
+      <img src="TIMELESS/lookbook/pic2.jpg" alt="Lookbook Image 2">
     </div>
 
     <!-- Image 3 -->
-    <div class="look-item">
-      <img src="TIMELESS/lookbook/pic3.jpg" alt="Legs in Field">
+    <div class="look-item" onclick="openModal(2)">
+      <img src="TIMELESS/lookbook/pic3.jpg" alt="Lookbook Image 3">
     </div>
 
     <!-- Image 4 -->
-    <div class="look-item">
-      <img src="TIMELESS/lookbook/pic4.jpg" alt="Close-up of Pants">
+    <div class="look-item" onclick="openModal(3)">
+      <img src="TIMELESS/lookbook/pic4.jpg" alt="Lookbook Image 4">
     </div>
 
     <!-- Image 5 -->
-    <div class="look-item">
-      <img src="TIMELESS/lookbook/pic5.jpg" alt="Model in Green Tracksuit">
+    <div class="look-item" onclick="openModal(4)">
+      <img src="TIMELESS/lookbook/pic5.jpg" alt="Lookbook Image 5">
     </div>
 
     <!-- Image 6 -->
-    <div class="look-item">
-      <img src="TIMELESS/lookbook/pic6.jpg" alt="Back of Black T-Shirt">
+    <div class="look-item" onclick="openModal(5)">
+      <img src="TIMELESS/lookbook/pic6.jpg" alt="Lookbook Image 6">
     </div>
 
     <!-- Image 7 -->
-    <div class="look-item">
-      <img src="TIMELESS/lookbook/pic7.jpg" alt="Two Models in Jerseys">
+    <div class="look-item" onclick="openModal(6)">
+      <img src="TIMELESS/lookbook/pic7.jpg" alt="Lookbook Image 7">
     </div>
 
     <!-- Image 8 -->
-    <div class="look-item">
-      <img src="TIMELESS/lookbook/pic8.jpg" alt="Model in Cap and White Tee">
-    </div>
-    <!-- Image 9 -->
-    <div class="look-item">
-      <img src="TIMELESS/lookbook/pic8.jpg" alt="Model in Cap and White Tee">
+    <div class="look-item" onclick="openModal(7)">
+      <img src="TIMELESS/lookbook/pic8.jpg" alt="Lookbook Image 8">
     </div>
 
+    <!-- Image 9 -->
+    <div class="look-item" onclick="openModal(8)">
+      <img src="TIMELESS/lookbook/pic9.jpg" alt="Lookbook Image 9">
+    </div>
+  </div>
+
+  <!-- Modal/Lightbox -->
+  <div id="imageModal" class="modal">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <button class="nav-arrow prev" onclick="changeImage(-1)">&#10094;</button>
+    <div class="modal-content">
+      <img class="modal-image" id="modalImg" src="" alt="Lookbook Image">
+    </div>
+    <button class="nav-arrow next" onclick="changeImage(1)">&#10095;</button>
+    <div class="image-counter">
+      <span id="imageCounter">1 / 9</span>
+    </div>
   </div>
 
   <!-- Back to Home -->
@@ -328,14 +553,119 @@
     </div>
   </footer>
 
-  <!-- Cart Count Script -->
   <script>
+    // Image array for the lightbox
+    const images = [
+      'TIMELESS/lookbook/pic1.jpg',
+      'TIMELESS/lookbook/pic2.jpg',
+      'TIMELESS/lookbook/pic3.jpg',
+      'TIMELESS/lookbook/pic4.jpg',
+      'TIMELESS/lookbook/pic5.jpg',
+      'TIMELESS/lookbook/pic6.jpg',
+      'TIMELESS/lookbook/pic7.jpg',
+      'TIMELESS/lookbook/pic8.jpg',
+      'TIMELESS/lookbook/pic9.jpg'
+    ];
+
+    let currentImageIndex = 0;
+
+    // Open modal with specific image
+    function openModal(imageIndex) {
+      currentImageIndex = imageIndex;
+      const modal = document.getElementById('imageModal');
+      const modalImg = document.getElementById('modalImg');
+      const counter = document.getElementById('imageCounter');
+      
+      modal.classList.add('active');
+      modalImg.src = images[currentImageIndex];
+      counter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+      
+      // Prevent background scrolling
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Close modal
+    function closeModal() {
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Navigate through images
+    function changeImage(direction) {
+      currentImageIndex += direction;
+      
+      // Loop around if at the beginning or end
+      if (currentImageIndex >= images.length) {
+        currentImageIndex = 0;
+      } else if (currentImageIndex < 0) {
+        currentImageIndex = images.length - 1;
+      }
+      
+      const modalImg = document.getElementById('modalImg');
+      const counter = document.getElementById('imageCounter');
+      
+      modalImg.src = images[currentImageIndex];
+      counter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(event) {
+      const modal = document.getElementById('imageModal');
+      if (modal.classList.contains('active')) {
+        switch(event.key) {
+          case 'Escape':
+            closeModal();
+            break;
+          case 'ArrowLeft':
+            changeImage(-1);
+            break;
+          case 'ArrowRight':
+            changeImage(1);
+            break;
+        }
+      }
+    });
+
+    // Close modal when clicking outside the image
+    document.getElementById('imageModal').addEventListener('click', function(event) {
+      if (event.target === this) {
+        closeModal();
+      }
+    });
+
     // Update cart count from localStorage
     const cartCountEl = document.getElementById('cart-count');
     if (cartCountEl) {
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
       const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
       if (totalItems > 0) cartCountEl.textContent = totalItems;
+    }
+
+    // Touch/swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    document.getElementById('imageModal').addEventListener('touchstart', function(event) {
+      touchStartX = event.changedTouches[0].screenX;
+    });
+
+    document.getElementById('imageModal').addEventListener('touchend', function(event) {
+      touchEndX = event.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const diff = touchStartX - touchEndX;
+      
+      if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+          changeImage(1); // Swipe left - next image
+        } else {
+          changeImage(-1); // Swipe right - previous image
+        }
+      }
     }
   </script>
 </body>
