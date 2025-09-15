@@ -201,231 +201,6 @@
       font-weight: 500;
     }
 
-    /* Color Options (Swatches) */
-    .color-options {
-      display: flex;
-      justify-content: center;
-      gap: 8px;
-      margin: 8px 0 0;
-    }
-
-    .color-option {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 1.5px solid #ddd;
-      transition: transform 0.2s ease;
-    }
-
-    .color-option:hover {
-      transform: scale(1.2);
-    }
-
-    .color-option.selected {
-      border: 1.5px solid #000;
-    }
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.7);
-    }
-
-    .modal-content {
-      background-color: #fefefe;
-      margin: 15% auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 800px;
-      border-radius: 8px;
-      position: relative;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-      position: absolute;
-      top: 15px;
-      right: 20px;
-    }
-
-    .product-detail {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-
-    .product-image {
-      flex: 1;
-      min-width: 300px;
-    }
-
-    .product-info {
-      flex: 1;
-      min-width: 300px;
-    }
-
-    .product-price {
-      font-size: 18px;
-      color: #000;
-      font-weight: 500;
-      margin: 10px 0;
-    }
-
-    .size-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 15px 0;
-    }
-
-    .size-option {
-      padding: 5px 10px;
-      border: 1px solid #ddd;
-      cursor: pointer;
-      border-radius: 4px;
-    }
-
-    .size-option.selected {
-      background: #000;
-      color: white;
-      border: 1px solid #000;
-    }
-
-    .color-options-modal {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 15px 0;
-    }
-
-    .color-option-modal {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      border: 2px solid #ddd;
-    }
-
-    .color-option-modal.selected {
-      border: 2px solid #000;
-      transform: scale(1.1);
-    }
-
-    .quantity-control {
-      display: flex;
-      align-items: center;
-      margin: 15px 0;
-    }
-
-    .quantity-btn {
-      width: 30px;
-      height: 30px;
-      background: #eee;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .quantity-input {
-      width: 50px;
-      text-align: center;
-      padding: 5px;
-      border: 1px solid #ddd;
-    }
-
-    .button-group {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      flex: 1;
-    }
-
-    .add-to-cart-btn {
-      background: #000;
-      color: white;
-    }
-
-    .buy-now-btn {
-      background: #000;
-      color: white;
-    }
-
-    .button:hover {
-      background: #333;
-    }
-
-    /* CTA Section */
-    .cta {
-      max-width: 1400px;
-      margin: 60px auto;
-      padding: 0 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .cta h2 {
-      font-size: 18px;
-      font-weight: 500;
-      margin-bottom: 8px;
-    }
-
-    .cta p {
-      font-size: 14px;
-      color: #333;
-    }
-
-    .subscribe-form {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .subscribe-form input {
-      padding: 10px;
-      border: 1px solid #000;
-      border-radius: 0;
-      font-size: 14px;
-      width: 200px;
-    }
-
-    .subscribe-form button {
-      background: black;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 14px;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
     /* Footer */
     footer {
       padding: 40px 20px;
@@ -439,20 +214,20 @@
       margin-bottom: 10px;
     }
 
-    footer p {
-      font-size: 14px;
-      margin-bottom: 20px;
-    }
-
     .social-icons {
       display: flex;
       gap: 15px;
     }
 
     .social-icons a {
-      font-size: 18px;
       color: #000;
       text-decoration: none;
+    }
+
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
     }
 
     /* Social Buttons */
@@ -521,7 +296,6 @@
       .menu-toggle { display: block; }
       .icons { display: none; }
       .products { grid-template-columns: 1fr; gap: 15px; }
-      .subscribe-form input { width: 150px; }
     }
 
     @media (min-width: 769px) and (max-width: 1024px) {
@@ -573,7 +347,7 @@
     <div class="menu-toggle" onclick="toggleMenu()">☰</div>
     <nav class="nav">
       <a href="#" onclick="toggleSubNav(event)">Shop</a>
-      <a href="all-products.html">All Products</a>
+      <a href="all-products.html">Products</a>
       <a href="lookbook.html">Lookbook</a>
       <a href="about.html">About</a>
     </nav>
@@ -598,19 +372,19 @@
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#" onclick="toggleSubNavMobile()">Shop</a></li>
-      <li><a href="all-products.html">All Products</a></li>
+      <li><a href="all-products.html">Products</a></li>
       <li><a href="lookbook.html">Lookbook</a></li>
       <li><a href="about.html">About</a></li>
     </ul>
   </div>
 
   <!-- Sub-nav -->
-  <div class="sub-nav" id="subNav">
-    <a href="#">Tops</a>
-    <a href="#">Shirts</a>
-    <a href="#">Hats</a>
-    <a href="#">Accessories</a>
-  </div>
+<div class="sub-nav" id="subNav">
+  <a href="all-products.html?category=tops">Tops</a>
+  <a href="all-products.html?category=shirts">Shirts</a>
+  <a href="all-products.html?category=caps">Caps</a>
+  <a href="all-products.html?category=shorts">Shorts</a>
+</div>
 
   <!-- Hero Video -->
   <div class="hero-container">
@@ -654,27 +428,44 @@
       </div>
       <div class="product-name">Tank Top</div>
       <div class="price">₦25,000</div>
-      
     </div>
 
-    <!-- Gold Standard Shirt -->
+    <!-- Gold Standard Shirt - White -->
     <div class="product"
-         data-id="gold"
-         data-name="Gold Standard Shirt"
-         data-price="50000"
-         data-default-img="TIMELESS/gold standard/white gold standard.jpg"
-         data-colors='["White", "Black"]'>
+        data-id="gold-white"
+        data-name="Gold Standard Shirt"
+        data-price="50000"
+        data-default-img="TIMELESS/gold standard/white gold standard.jpg"
+        data-colors='["White"]'>
       <div class="image-slider">
-        <button class="arrow left" onclick="prevSlide(event, 'gold')">‹</button>
-        <div class="slider-track" id="slider-gold">
+        <button class="arrow left" onclick="prevSlide(event, 'gold-white')">‹</button>
+        <div class="slider-track" id="slider-gold-white">
+          <img class="slider-image" src="TIMELESS/gold standard/frontwhite goldstandard.jpg" alt="Front White">
           <img class="slider-image" src="TIMELESS/gold standard/white gold standard.jpg" alt="White">
+        </div>
+        <button class="arrow right" onclick="nextSlide(event, 'gold-white')">›</button>
+      </div>
+      <div class="product-name">Gold Standard Shirt (White)</div>
+      <div class="price">₦50,000</div>
+    </div>
+
+    <!-- Gold Standard Shirt - Black -->
+    <div class="product"
+        data-id="gold-black"
+        data-name="Gold Standard Shirt"
+        data-price="50000"
+        data-default-img="TIMELESS/gold standard/black gold standard.jpg"
+        data-colors='["Black"]'>
+      <div class="image-slider">
+        <button class="arrow left" onclick="prevSlide(event, 'gold-black')">‹</button>
+        <div class="slider-track" id="slider-gold-black">
+          <img class="slider-image" src="TIMELESS/gold standard/frontblack goldstandard.jpg" alt="Front Black">
           <img class="slider-image" src="TIMELESS/gold standard/black gold standard.jpg" alt="Black">
         </div>
-        <button class="arrow right" onclick="nextSlide(event, 'gold')">›</button>
+        <button class="arrow right" onclick="nextSlide(event, 'gold-black')">›</button>
       </div>
-      <div class="product-name">Gold Standard Shirt</div>
+      <div class="product-name">Gold Standard Shirt (Black)</div>
       <div class="price">₦50,000</div>
-      
     </div>
 
     <!-- Snapback Cap -->
@@ -691,14 +482,13 @@
           <img class="slider-image" src="TIMELESS/alpha caps/pinkcap .jpg" alt="Pink">
           <img class="slider-image" src="TIMELESS/alpha caps/green caps.jpg" alt="Green">
           <img class="slider-image" src="TIMELESS/alpha caps/purple cap .jpg" alt="Purple">
-          <img class="slider-image" src="TIMELESS/alpha caps/red cap.jpg" alt="Red">
           <img class="slider-image" src="TIMELESS/alpha caps/blue cap.jpg" alt="Blue">
+          <img class="slider-image" src="TIMELESS/alpha caps/red cap.jpg" alt="Red">
         </div>
         <button class="arrow right" onclick="nextSlide(event, 'cap')">›</button>
       </div>
       <div class="product-name">Snapback Cap</div>
       <div class="price">₦20,000</div>
-      
     </div>
 
   </div>
@@ -720,73 +510,27 @@
     </form>
   </section>
 
-  
-
-
   <!-- Footer -->
   <footer>
     <h3>FOLLOW US</h3>
     <div class="social-icons">
-      <a href="https://www.instagram.com/timeless_since_1982?igsh=Y2VxdGN0OWJ5bmlh&utm_source=qr" target="_blank" title="Instagram">
+      <a href="https://www.instagram.com/timeless_since_1982" target="_blank" title="Instagram">
         <img src="TIMELESS/instagramlogo.webp" alt="Instagram" style="width: 24px; height: 24px; vertical-align: middle;">
       </a>
       <a href="https://wa.me/2348166514620" target="_blank" title="WhatsApp">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" style="width: 24px; height: 24px; vertical-align: middle;">
       </a>
-      <a href="https://www.tiktok.com/@t_m_l11?_t=ZS-8zCbWUrObPY&_r=1" target="_blank" title="TikTok">
+      <a href="https://www.tiktok.com/@t_m_l11" target="_blank" title="TikTok">
         <img src="TIMELESS/tiktoklogo.webp" alt="TikTok" style="width: 24px; height: 24px; vertical-align: middle;">
       </a>
+    </div>
+    <div class="social-stats">
+      <span>@t_m_l11 • 1,042 followers • 372 likes</span>
     </div>
     <p style="font-size:14px; color:#777; margin-top:10px;">
       © 2025 TIMELESS. Crafted with care since 1982.
     </p>
   </footer>
-
-  <!-- Product Detail Modal -->
-  <div id="productModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <div class="product-detail">
-        <div class="product-image">
-          <img id="modalImage" src="" alt="Product Image" style="width: 100%;">
-        </div>
-        <div class="product-info">
-          <h1 id="modalName"></h1>
-          <div class="product-price" id="modalPrice"></div>
-
-          <label><strong>Size:</strong></label>
-          <div class="size-options">
-            <div class="size-option selected" data-size="S">S</div>
-            <div class="size-option" data-size="M">M</div>
-            <div class="size-option" data-size="L">L</div>
-            <div class="size-option" data-size="XL">XL</div>
-            <div class="size-option" data-size="2XL">2XL</div>
-            <div class="size-option" data-size="3XL">3XL</div>
-          </div>
-
-          <label><strong>Color:</strong></label>
-          <div class="color-options-modal" id="colorOptions">
-            <!-- Filled dynamically -->
-          </div>
-          
-          <div class="quantity-control">
-            <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
-            <input type="number" class="quantity-input" id="quantity" value="1" min="1">
-            <button class="quantity-btn" onclick="increaseQuantity()">+</button>
-          </div>
-          
-          <div class="button-group">
-            <button class="button add-to-cart-btn" onclick="addToCartFromModal()">
-              Add to Cart
-            </button>
-            <button class="button buy-now-btn" onclick="buyNowFromModal()">
-              Buy it now →
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script>
     // === CART MANAGEMENT ===
@@ -804,165 +548,9 @@
       updateCartCount();
     });
 
-    // ===== COLOR HEX MAP =====
-    const colorHexMap = {
-      'Black': '#000000',
-      'White': '#FFFFFF',
-      'Orange': '#FFA500',
-      'Green': '#008000',
-      'Blue': '#0000FF',
-      'Pink': '#FFC0CB',
-      'Purple': '#800080',
-      'Red': '#FF0000'
-    };
-
-    // ===== GET IMAGE BY COLOR =====
-    function getImageByColor(productId, color) {
-      const map = {
-        'm-tank': {
-          'Black': 'TIMELESS/tank top/black tank top.jpg',
-          'White': 'TIMELESS/tank top/white tank top.jpg',
-          'Orange': 'TIMELESS/tank top/orange tank top.jpg',
-          'Green': 'TIMELESS/tank top/green tank top.jpg'
-        },
-        'gold': {
-          'White': 'TIMELESS/gold standard/white gold standard.jpg',
-          'Black': 'TIMELESS/gold standard/black gold standard.jpg'
-        },
-        'cap': {
-          'Black': 'TIMELESS/alpha caps/black cap.jpg',
-          'Pink': 'TIMELESS/alpha caps/pinkcap .jpg',
-          'Green': 'TIMELESS/alpha caps/green caps.jpg',
-          'Purple': 'TIMELESS/alpha caps/purple cap .jpg',
-          'Blue': 'TIMELESS/alpha caps/blue cap.jpg',
-          'Red': 'TIMELESS/alpha caps/red cap.jpg'
-        }
-      };
-      return map[productId]?.[color] || '';
-    }
-
-    // ===== OPEN MODAL WITH DYNAMIC COLORS =====
-    function openProduct(productId, name, price, defaultImage, availableColors) {
-      document.getElementById('modalName').textContent = name;
-      document.getElementById('modalPrice').textContent = `₦${price.toLocaleString()}`;
-      document.getElementById('modalImage').src = defaultImage;
-
-      // Clear and rebuild color options
-      const colorOptionsDiv = document.getElementById('colorOptions');
-      colorOptionsDiv.innerHTML = '';
-
-      availableColors.forEach(color => {
-        const button = document.createElement('div');
-        button.className = 'color-option-modal';
-        button.style.backgroundColor = colorHexMap[color];
-        button.setAttribute('data-color', color);
-        const imgPath = getImageByColor(productId, color);
-        button.setAttribute('data-img', imgPath);
-
-        if (color === 'Black' || color === 'White' || availableColors.indexOf(color) === 0) {
-          button.classList.add('selected');
-        }
-        colorOptionsDiv.appendChild(button);
-      });
-
-      // Reset size selection
-      document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
-      document.querySelector('.size-option[data-size="S"]').classList.add('selected');
-      document.getElementById('quantity').value = 1;
-
-      // Store current product
-      window.currentProduct = { id: productId, name, price };
-
-      // Show modal
-      document.getElementById('productModal').style.display = 'block';
-    }
-
-    // Color Selection
-    document.addEventListener('click', function(e) {
-      if (e.target.classList.contains('color-option-modal')) {
-        document.querySelectorAll('.color-option-modal').forEach(b => b.classList.remove('selected'));
-        e.target.classList.add('selected');
-        const imgSrc = e.target.getAttribute('data-img');
-        if (imgSrc) {
-          document.getElementById('modalImage').src = imgSrc;
-        }
-      }
-    });
-
-    // Size Selection
-    document.querySelectorAll('.size-option').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
-        this.classList.add('selected');
-      });
-    });
-
-    // Quantity
-    function increaseQuantity() {
-      const input = document.getElementById('quantity');
-      input.value = parseInt(input.value) + 1;
-    }
-
-    function decreaseQuantity() {
-      const input = document.getElementById('quantity');
-      if (parseInt(input.value) > 1) {
-        input.value = parseInt(input.value) - 1;
-      }
-    }
-
-    // Add to Cart
-    function addToCartFromModal() {
-      const name = document.getElementById('modalName').textContent;
-      const priceStr = document.getElementById('modalPrice').textContent.replace('₦', '').replace(',', '');
-      const price = parseFloat(priceStr);
-      const image = document.getElementById('modalImage').src;
-      const size = document.querySelector('.size-option.selected').getAttribute('data-size');
-      const colorOption = document.querySelector('.color-option-modal.selected');
-      const color = colorOption.getAttribute('data-color');
-      const quantity = parseInt(document.getElementById('quantity').value);
-
-      const displayName = `${name} (${color}, ${size})`;
-
-      const existing = cart.find(item => item.name === displayName);
-      if (existing) {
-        existing.quantity += quantity;
-      } else {
-        cart.push({
-          id: window.currentProduct.id,
-          name: displayName,
-          price,
-          image,
-          size,
-          color,
-          quantity
-        });
-      }
-
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCartCount();
-      closeProductModal();
-      alert(`${displayName} added to cart!`);
-    }
-
-    function buyNowFromModal() {
-      addToCartFromModal();
-      setTimeout(() => window.location.href = 'checkout.html', 500);
-    }
-
-    function closeProductModal() {
-      document.getElementById('productModal').style.display = 'none';
-    }
-
-    document.querySelector('.close').onclick = closeProductModal;
-    window.onclick = function(e) {
-      if (e.target === document.getElementById('productModal')) {
-        closeProductModal();
-      }
-    };
-
     // ===== SLIDER LOGIC =====
     const sliders = {};
-    ['m-tank', 'gold', 'cap'].forEach(id => {
+    ['m-tank', 'gold-white', 'gold-black', 'cap'].forEach(id => {
       sliders[id] = 0;
     });
 
@@ -1050,7 +638,7 @@
       }
     });
 
-    // Attach click events using data attributes
+    // === REDIRECT TO PRODUCT PAGE ON CLICK ===
     document.querySelectorAll('.product').forEach(product => {
       product.addEventListener('click', function () {
         const id = this.dataset.id;
@@ -1059,7 +647,17 @@
         const defaultImg = this.dataset.defaultImg;
         const colors = JSON.parse(this.dataset.colors);
 
-        openProduct(id, name, price, defaultImg, colors);
+        // Save full product data using exact image path
+        localStorage.setItem('currentProductView', JSON.stringify({
+          id,
+          name,
+          price,
+          defaultImg,
+          colors
+        }));
+
+        // Go to product page
+        window.location.href = `product.html?id=${id}`;
       });
     });
   </script>

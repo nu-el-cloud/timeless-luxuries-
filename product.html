@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TIMELESS | Product</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #000;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      background: white;
+      z-index: 100;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo img {
+      height: 120px;
+      width: auto;
+      display: block;
+    }
+    
+    .nav {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .nav a:hover {
+      opacity: 0.8;
+    }
+
+    .icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .icons a {
+      font-size: 18px;
+      color: #000;
+      text-decoration: none;
+    }
+
+    /* Product Detail */
+    .product-detail {
+      max-width: 1400px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .product-image {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .product-info {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .product-price {
+      font-size: 18px;
+      color: #000;
+      font-weight: 500;
+      margin: 10px 0;
+    }
+
+    /* Size Options */
+    .size-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .size-option {
+      padding: 5px 10px;
+      border: 1px solid #ddd;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .size-option.selected {
+      background: #000;
+      color: white;
+      border: 1px solid #000;
+    }
+
+    /* Color Swatches */
+    .color-options-modal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
+    }
+
+    .color-option-modal {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid #ddd;
+      transition: transform 0.2s ease;
+    }
+
+    .color-option-modal:hover {
+      transform: scale(1.2);
+    }
+
+    .color-option-modal.selected {
+      border: 2px solid #000;
+      transform: scale(1.1);
+    }
+
+    /* Quantity Control */
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      margin: 15px 0;
+    }
+
+    .quantity-btn {
+      width: 30px;
+      height: 30px;
+      background: #eee;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quantity-input {
+      width: 50px;
+      text-align: center;
+      padding: 5px;
+      border: 1px solid #ddd;
+    }
+
+    /* Buttons */
+    .button-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex: 1;
+    }
+
+    .add-to-cart-btn {
+      background: #000;
+      color: white;
+    }
+
+    .buy-now-btn {
+      background: #000;
+      color: white;
+    }
+
+    .button:hover {
+      background: #333;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      text-align: left;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    footer h3 {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .social-icons img {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+    }
+
+    .back-link {
+      max-width: 1400px;
+      margin: 20px auto;
+      padding: 0 20px;
+      font-size: 14px;
+    }
+
+    .back-link a {
+      color: #000;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="TIMELESS/timelesslogo.png" alt="TIMELESS">
+      </a>
+    </div>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="all-products.html">All Products</a>
+      <a href="lookbook.html">Lookbook</a>
+      <a href="about.html">About</a>
+    </nav>
+    <div class="icons">
+      <a href="#" title="Search" onclick="toggleSearch()">🔍</a>
+      <a href="cart.html" title="Cart">🛍️</a>
+    </div>
+  </header>
+
+  <!-- Back Link -->
+  <div class="back-link">
+    <a href="javascript:history.back()">← Back to Products</a>
+  </div>
+
+  <!-- Product Detail -->
+  <div class="product-detail">
+    <div class="product-image">
+      <img id="mainImage" src="" alt="Product Image" style="width: 100%; max-width: 500px;">
+    </div>
+    <div class="product-info">
+      <h1 id="productName"></h1>
+      <div class="product-price" id="productPrice"></div>
+
+      <label><strong>Size:</strong></label>
+      <div class="size-options">
+        <div class="size-option" data-size="M">M</div>
+        <div class="size-option" data-size="L">L</div>
+        <div class="size-option" data-size="XL">XL</div>
+        <div class="size-option" data-size="2XL">2XL</div>
+      </div>
+
+      <label><strong>Color:</strong></label>
+      <div class="color-options-modal" id="colorOptions">
+        <!-- Filled dynamically -->
+      </div>
+
+      <div class="quantity-control">
+        <button class="quantity-btn" onclick="decreaseQuantity()">-</button>
+        <input type="number" class="quantity-input" id="quantity" value="1" min="1">
+        <button class="quantity-btn" onclick="increaseQuantity()">+</button>
+      </div>
+
+      <div class="button-group">
+        <button class="button add-to-cart-btn" onclick="addToCart()">
+          Add to Cart
+        </button>
+        <button class="button buy-now-btn" onclick="buyNow()">
+          Buy it now →
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <h3>FOLLOW US</h3>
+    <div class="social-icons">
+      <a href="https://www.instagram.com/timeless_since_1982" target="_blank" title="Instagram">
+        <img src="TIMELESS/instagramlogo.webp" alt="Instagram">
+      </a>
+      <a href="https://wa.me/2348166514620" target="_blank" title="WhatsApp">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+      </a>
+      <a href="https://www.tiktok.com/@t_m_l11" target="_blank" title="TikTok">
+        <img src="TIMELESS/tiktoklogo.webp" alt="TikTok">
+      </a>
+    </div>
+    <div style="margin-top: 10px; font-size: 14px; color: #777;">
+      <strong>WhatsApp:</strong> Message us for orders<br>
+      <strong>TikTok:</strong> @t_m_l11 • 1,042 followers • 372 likes
+    </div>
+    <p style="font-size:14px; color:#777; margin-top:10px;">
+      © 2025 TIMELESS. Crafted with care since 1982.
+    </p>
+  </footer>
+
+  <script>
+    // === CART MANAGEMENT ===
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    function updateCartCount() {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const cartCountEl = document.getElementById('cart-count');
+      if (cartCountEl) {
+        cartCountEl.textContent = totalItems > 0 ? ` (${totalItems})` : '';
+      }
+    }
+
+    // ===== COLOR HEX MAP =====
+    const colorHexMap = {
+      'Black': '#000000',
+      'White': '#FFFFFF',
+      'Orange': '#FFA500',
+      'Green': '#008000',
+      'Blue': '#0000FF',
+      'Pink': '#FFC0CB',
+      'Purple': '#800080',
+      'Red': '#FF0000'
+    };
+
+    // ===== GET IMAGE BY COLOR =====
+    function getImageByColor(productId, color) {
+      const map = {
+        'm-tank': {
+          'Black': 'TIMELESS/tank top/black tank top.jpg',
+          'White': 'TIMELESS/tank top/white tank top.jpg',
+          'Orange': 'TIMELESS/tank top/orange tank top.jpg',
+          'Green': 'TIMELESS/tank top/green tank top.jpg'
+        },
+        'gold-white': {
+          'White': 'TIMELESS/gold standard/white gold standard.jpg'
+        },
+        'gold-black': {
+          'Black': 'TIMELESS/gold standard/black gold standard.jpg'
+        },
+        'cap': {
+          'Black': 'TIMELESS/alpha caps/black cap.jpg',
+          'Pink': 'TIMELESS/alpha caps/pinkcap .jpg',
+          'Green': 'TIMELESS/alpha caps/green caps.jpg',
+          'Purple': 'TIMELESS/alpha caps/purple cap .jpg',
+          'Blue': 'TIMELESS/alpha caps/blue cap.jpg',
+          'Red': 'TIMELESS/alpha caps/red cap.jpg'
+        },
+        'pulse-white': {
+          'White': 'TIMELESS/PULSEOFSOUNDWHITE.jpg'
+        },
+        'pulse-black': {
+          'Black': 'TIMELESS/PULSEOFSOUNDBLACK.jpg'
+        },
+        'shorts-white': {
+          'White': 'TIMELESS/white short.jpg'
+        },
+        'shorts-black': {
+          'Black': 'TIMELESS/black short.jpg'
+        },
+        'shorts-red': {
+          'Red': 'TIMELESS/shorts/redshortfront.jpg'
+        },
+        'shorts-blue': {
+          'Blue': 'TIMELESS/blue short.jpg'
+        },
+        'f-crop': {
+          'Blue': 'TIMELESS/crop tops/blue crop top .jpg',
+          'Pink': 'TIMELESS/crop tops/pink crop top.jpg',
+          'White': 'TIMELESS/crop tops/white crop top .jpg',
+          'Black': 'TIMELESS/crop tops/black crop top.jpg'
+        }
+      };
+      return map[productId]?.[color] || '';
+    }
+
+    // Load product data
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+
+      if (!productId) {
+        alert("No product selected.");
+        window.location.href = 'all-products.html';
+        return;
+      }
+
+      // Retrieve full product data saved by all-products.html
+      const savedData = localStorage.getItem('currentProductView');
+      if (!savedData) {
+        alert("Product data not found. Please go through the products page.");
+        window.location.href = 'all-products.html';
+        return;
+      }
+
+      const product = JSON.parse(savedData);
+
+      // Confirm correct product
+      if (product.id !== productId) {
+        alert("Invalid product data.");
+        window.location.href = 'all-products.html';
+        return;
+      }
+
+      // Set global current product
+      window.currentProduct = { id: product.id, name: product.name, price: product.price };
+
+      // Update DOM
+      document.getElementById('productName').textContent = product.name;
+      document.getElementById('productPrice').textContent = `₦${product.price.toLocaleString()}`;
+      
+      // Get main image element
+      const imgElement = document.getElementById('mainImage');
+      imgElement.src = product.defaultImg;
+
+      // Verify image loads
+      imgElement.onload = () => console.log("Image loaded:", product.defaultImg);
+      imgElement.onerror = () => {
+        console.error("Failed to load image:", product.defaultImg);
+        alert("Image failed to load. Check file path.");
+      };
+
+      // Build color swatches
+      const colorOptionsDiv = document.getElementById('colorOptions');
+      colorOptionsDiv.innerHTML = '';
+
+      product.colors.forEach(color => {
+        const button = document.createElement('div');
+        button.className = 'color-option-modal';
+        button.style.backgroundColor = colorHexMap[color] || '#ccc';
+        button.setAttribute('data-color', color);
+
+        // Set image path for this color
+        const imgPath = getImageByColor(productId, color);
+        button.setAttribute('data-img', imgPath);
+
+        // Select first color by default
+        if (color === product.colors[0]) {
+          button.classList.add('selected');
+        }
+
+        colorOptionsDiv.appendChild(button);
+      });
+
+      // Color selection with image change
+      colorOptionsDiv.addEventListener('click', function(e) {
+        if (e.target.classList.contains('color-option-modal')) {
+          document.querySelectorAll('.color-option-modal').forEach(b => b.classList.remove('selected'));
+          e.target.classList.add('selected');
+          
+          const imgSrc = e.target.getAttribute('data-img');
+          if (imgSrc) {
+            document.getElementById('mainImage').src = imgSrc;
+          }
+        }
+      });
+
+      // Size selection
+      document.querySelectorAll('.size-option').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.size-option').forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+        });
+      });
+    });
+
+    // Quantity Controls
+    function increaseQuantity() {
+      const input = document.getElementById('quantity');
+      input.value = parseInt(input.value) + 1;
+    }
+
+    function decreaseQuantity() {
+      const input = document.getElementById('quantity');
+      if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+      }
+    }
+
+    // Add to Cart
+    function addToCart() {
+      const name = document.getElementById('productName').textContent;
+      const priceStr = document.getElementById('productPrice').textContent.replace('₦', '').replace(',', '');
+      const price = parseFloat(priceStr);
+      const image = document.getElementById('mainImage').src;
+      const size = document.querySelector('.size-option.selected').getAttribute('data-size');
+      const colorOption = document.querySelector('.color-option-modal.selected');
+      const color = colorOption.getAttribute('data-color');
+      const quantity = parseInt(document.getElementById('quantity').value);
+
+      const displayName = `${name} (${color}, ${size})`;
+
+      const existing = cart.find(item => item.name === displayName);
+      if (existing) {
+        existing.quantity += quantity;
+      } else {
+        cart.push({
+          id: window.currentProduct.id,
+          name: displayName,
+          price,
+          image,
+          size,
+          color,
+          quantity
+        });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCount();
+      alert(`${displayName} added to cart!`);
+    }
+
+    function buyNow() {
+      addToCart();
+      setTimeout(() => window.location.href = 'checkout.html', 500);
+    }
+  </script>
+</body>
+</html>
