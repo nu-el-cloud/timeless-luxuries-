@@ -1,0 +1,123 @@
+.lookbook {
+  margin-left: 4px;
+  padding-top: 90px;
+  width: auto;
+}
+
+.first,
+.second,
+.third,
+.fourth {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.first {
+  width: 99.6%;
+}
+
+.second,
+.third,
+.fourth {
+  width: 99.6%;
+}
+
+.first img,
+.second img,
+.third img,
+.fourth img {
+  width: calc(25% - 7.5px); /* 4 images with 10px gap */
+  height: 74vh;
+  object-fit: cover;
+}
+
+.second {
+  padding-top: 10px;
+}
+
+.third {
+  margin-top: 60px;
+}
+
+.fourth {
+  padding-top: 10px;
+}
+
+/* === Tablet (900px and below): keep 4-per-row === */
+@media (max-width: 900px) {
+  .lookbook {
+    margin-left: 10px;
+    padding-top: 96px;
+  }
+
+  .first {
+    width: 99%;
+  }
+
+  .second,
+  .third,
+  .fourth {
+    width: 99%;
+  }
+
+  .first img,
+  .second img,
+  .third img,
+  .fourth img {
+    width: calc(25% - 7.5px);
+    height: 18vh;
+    object-fit: cover;
+  }
+
+  .second {
+    padding-top: 10px;
+  }
+
+  .third {
+    margin-top: 60px;
+  }
+
+  .fourth {
+    padding-top: 10px;
+  }
+}
+
+/* === Mobile (768px and below): 2x2 GRID === */
+@media (max-width: 768px) {
+  .lookbook {
+    margin-left: 5px;
+    padding-top: 100px;
+  }
+
+  .first,
+  .second,
+  .third,
+  .fourth {
+    width: 98%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .first img,
+  .second img,
+  .third img,
+  .fourth img {
+    width: 100%;
+    height: 18vh;
+    object-fit: cover;
+  }
+
+  .second {
+    padding-top: 10px;
+  }
+
+  .third {
+    margin-top: 30px;
+  }
+
+  .fourth {
+    padding-top: 10px;
+  }
+}
