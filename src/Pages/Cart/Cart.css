@@ -27,6 +27,10 @@
   margin-bottom: 30px;
 }
 
+.continue-shopping:hover{
+  color: blue;
+}
+
 .cart-page .continue-shopping:hover {
   opacity: 0.8;
 }
@@ -148,11 +152,16 @@
   font-family: inherit;
 }
 
-.cart-page .summary {
+.cart-page .summary a {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  text-decoration: none;
   gap: 10px;
+}
+
+.cart-page .summary button:hover {
+  background-color: red;
 }
 
 .cart-page .subtotal {

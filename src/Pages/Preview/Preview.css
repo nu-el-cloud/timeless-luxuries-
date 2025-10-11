@@ -274,3 +274,59 @@
     flex-direction: column;
   }
 }
+
+/* =============== ADD TO CART TOAST (Top-Right Slide-In) =============== */
+.add-to-cart-toast {
+  position: fixed;
+  top: 20px;
+  right: -320px; /* Start off-screen */
+  width: 280px;
+  background: #000;
+  color: white;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: slideInRight 0.4s forwards, fadeOut 0.3s 2.7s forwards;
+}
+
+.add-to-cart-toast p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: #fff;
+  animation: fillProgress 3s linear;
+}
+
+@keyframes slideInRight {
+  to {
+    right: 20px;
+  }
+}
+
+@keyframes fillProgress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateX(0); }
+  to { opacity: 0; transform: translateX(20px); }
+}

@@ -8,12 +8,11 @@ import FrontWhite from '../../Assets/fw.png'
 import FrontBlack from '../../Assets/fb.png'
 import FrontTankWhite from '../../Assets/wtt.png'
 import FrontTankBlack from '../../Assets/btt.png'
-import WhiteCrop from '../../Assets/wct.png'
+
 import BlackCrop from '../../Assets/batct.png'
 import WhiteShort from '../../Assets/wsf.png'
 import BlackShort from '../../Assets/bdf.png'
 import BlackCap from '../../Assets/bc.png'
-
 
 
 import displaya from '../../Assets/PULSEOFSOUNDB.jpg';
@@ -27,6 +26,14 @@ const stocks = [
     name: "Timeless New Top - White",
     price: "₦50,000.00",
     image: FrontWhite,
+    soldOut: false,
+    link: "/top"
+  },
+  {
+    id: 2,
+    name: "Timeless New Top - Black",
+    price: "₦50,000.00",
+    image: FrontBlack,
     soldOut: false,
     link: "/top"
   },
@@ -80,7 +87,6 @@ const stocks = [
     soldOut: false,
     link: "/cap"
   },
-  
 ];
 
 const Home = () => {

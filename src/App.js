@@ -1,11 +1,10 @@
 import React from "react";
-import "@fontsource/montserrat"; // Defaults to 400 weight
-import "@fontsource/montserrat/700.css"; // Optional: bold
+import "@fontsource/montserrat";
+import "@fontsource/montserrat/700.css"; 
 import "./App.css";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import ScrollToTop from './Components/Scroll/Scroll';
-
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 
@@ -22,12 +21,13 @@ import Tank from "./Pages/Tanktops/Tanktops";
 import Crop from "./Pages/Croptop/Croptop";
 import Short from "./Pages/Short/Short";
 import Cap from "./Pages/Cap/Cap";
+import Check from "./Pages/Check/Check"
 
 function App() {
 
   return (
     <BrowserRouter>
-      {/* Navbar always visible */}
+
       <ScrollToTop />
       <Navbar />
 
@@ -44,9 +44,9 @@ function App() {
         <Route path="/crop" element={<Crop />} />
         <Route path="/short" element={<Short />} />
         <Route path="/cap" element={<Cap />} />
+        <Route path="/check" element={<Check />} />
       </Routes>
 
-       {/* Footer always visible */}
       <Footer />
     </BrowserRouter>
   );

@@ -11,7 +11,7 @@ import BlackCrop from '../../Assets/batct.png'
 import WhiteShort from '../../Assets/wsf.png'
 import BlackShort from '../../Assets/bdf.png'
 import BlackCap from '../../Assets/bc.png'
-
+import RedCap from '../../Assets/rc.png'
 
 // Mock product data — replace with your API later
 const stocks = [
@@ -87,7 +87,6 @@ const stocks = [
     soldOut: false,
     link: "/cap"
   },
-  
 ];
 
 const AllProducts = () => {

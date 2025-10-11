@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Cart.css";
 import { IoMdClose } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 // Helper: extract numeric price from "₦50,000.00"
 const parsePrice = (priceStr) => {
@@ -101,7 +102,7 @@ const Cart = () => {
               <span>{formatNGN(subtotal)}</span>
             </div>
             <p className="tax-shipping">Taxes and shipping calculated at checkout</p>
-            <button className="checkout-btn">Check out →</button>
+            <Link to="/check" > <button className="checkout-btn">Check out →</button> </Link>
           </div>
         </>
       ) : (

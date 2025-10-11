@@ -1,5 +1,5 @@
-// PreviewPage.js
-import React, { useState } from "react";
+// Tank.js
+import React, { useState, useEffect } from "react";
 import "./Tanktops.css";
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,6 @@ import FrontWhite from '../../Assets/wtt.png';
 import FrontBlack from '../../Assets/btt.png';
 import Green from '../../Assets/gtt.png';
 import Orange from '../../Assets/ott.png';
-
 
 // Related product images
 import TankTop from '../../Assets/fw.png';
@@ -48,6 +47,7 @@ const Tank = () => {
   const [selectedSize, setSelectedSize] = useState("S");
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [quantity, setQuantity] = useState(1);
+  const [showToast, setShowToast] = useState(false); // ✅ Toast state
 
   const handleSizeClick = (size) => {
     setSelectedSize(size);
@@ -78,9 +78,20 @@ const Tank = () => {
     if (buyNow) {
       window.location.href = "/cart";
     } else {
-      alert("Added to cart!");
+      setShowToast(true); // ✅ Show toast instead of alert
     }
   };
+
+  // ✅ Auto-hide toast after 3 seconds
+  useEffect(() => {
+    let timer;
+    if (showToast) {
+      timer = setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [showToast]);
 
   const relatedProducts = [
     { 
@@ -113,12 +124,10 @@ const Tank = () => {
     <div className="preview-page">
       {/* Main Product Section */}
       <div className="product-section">
-        {/* Image column: scrolls normally */}
         <div className="product-image">
           <img src={selectedColor.frontImage} alt={`${product.name} - Front`} />
         </div>
 
-        {/* Details column: stays fixed until images scroll past */}
         <div className="product-details">
           <h1>{product.name}</h1>
           <p className="price">{product.price}</p>
@@ -176,20 +185,26 @@ const Tank = () => {
       {/* You May Also Like */}
       <div className="related-products">
         <h2>YOU MAY ALSO LIKE</h2>
-
-
-          <div className="products-grid">
-            {relatedProducts.map((item, index) => (
+        <div className="products-grid">
+          {relatedProducts.map((item, index) => (
             <Link to={item.link} key={index} className="related-product">
-            <img src={item.image} alt={item.name} />
-            <h3>{item.name}</h3>
-            <p className="price">{item.price}</p>
+              <img src={item.image} alt={item.name} />
+              <h3>{item.name}</h3>
+              <p className="price">{item.price}</p>
             </Link>
-            ))}
+          ))}
         </div>
-
-
       </div>
+
+      {/* ✅ TOP-RIGHT TOAST NOTIFICATION */}
+      {showToast && (
+        <div className="add-to-cart-toast">
+          <p>Added to cart</p>
+          <div className="progress-bar">
+            <div className="progress-fill"></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

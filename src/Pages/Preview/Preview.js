@@ -1,5 +1,4 @@
-// PreviewPage.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./Preview.css";
 
@@ -39,6 +38,7 @@ const Preview = () => {
   const [selectedSize, setSelectedSize] = useState("S");
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [quantity, setQuantity] = useState(1);
+  const [showToast, setShowToast] = useState(false); // ✅ Toast state
 
   const handleSizeClick = (size) => {
     setSelectedSize(size);
@@ -69,9 +69,20 @@ const Preview = () => {
     if (buyNow) {
       window.location.href = "/cart";
     } else {
-      alert("Added to cart!");
+      setShowToast(true); // ✅ Show toast only for "Add to cart"
     }
   };
+
+  // ✅ Auto-hide toast after 3 seconds
+  useEffect(() => {
+    let timer;
+    if (showToast) {
+      timer = setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [showToast]);
 
   const relatedProducts = [
     { 
@@ -104,13 +115,11 @@ const Preview = () => {
     <div className="preview-page">
       {/* Main Product Section */}
       <div className="product-section">
-        {/* Image column: scrolls normally */}
         <div className="product-image">
           <img src={selectedColor.frontImage} alt={`${product.name} - Front`} />
           <img src={selectedColor.backImage} alt={`${product.name} - Back`} />
         </div>
 
-        {/* Details column: stays fixed until images scroll past */}
         <div className="product-details">
           <h1>{product.name}</h1>
           <p className="price">{product.price}</p>
@@ -168,18 +177,26 @@ const Preview = () => {
       {/* You May Also Like */}
       <div className="related-products">
         <h2>YOU MAY ALSO LIKE</h2>
-
         <div className="products-grid">
-            {relatedProducts.map((item, index) => (
+          {relatedProducts.map((item, index) => (
             <Link to={item.link} key={index} className="related-product">
-            <img src={item.image} alt={item.name} />
-            <h3>{item.name}</h3>
-            <p className="price">{item.price}</p>
+              <img src={item.image} alt={item.name} />
+              <h3>{item.name}</h3>
+              <p className="price">{item.price}</p>
             </Link>
-            ))}
+          ))}
         </div>
-
       </div>
+
+      {/* ✅ TOP-RIGHT TOAST NOTIFICATION */}
+      {showToast && (
+        <div className="add-to-cart-toast">
+          <p>Added to cart</p>
+          <div className="progress-bar">
+            <div className="progress-fill"></div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
